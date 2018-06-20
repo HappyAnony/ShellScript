@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>实用脚本 &mdash; ShellScript 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="ShellScript 1.0.0 文档" href="../index.html"/>
+        <link rel="up" title="脚本示例" href="index.html"/>
+        <link rel="prev" title="示例脚本" href="0-smallscript.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ShellScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1-syntax/index.html">语法基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">脚本示例</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0-smallscript.html">示例脚本</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">实用脚本</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ShellScript</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">脚本示例</a> &raquo;</li>
+        
+      <li>实用脚本</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/3-sample/1-usescript.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>实用脚本<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>shell脚本常用来启动相关系统服务</p>
+<ul class="simple">
+<li><a class="reference external" href="#memcachedl">memcached服务启动脚本</a></li>
+</ul>
+<div class="section" id="x00-memcached">
+<span id="memcachedl"></span><h2>0x00 memcached服务启动脚本<a class="headerlink" href="#x00-memcached" title="永久链接至标题">¶</a></h2>
+<p>以下是<code class="docutils literal"><span class="pre">memcached</span></code>服务启动脚本的示例，是一个非常简单但却非常通用的<code class="docutils literal"><span class="pre">SysV</span></code>服务启动脚本</p>
+<ul class="simple">
+<li>关于<code class="docutils literal"><span class="pre">SysV</span></code>服务启动脚本的详解请参考：<a class="reference external" href="http://www.cnblogs.com/f-ck-need-u/p/7524401.html">如何写SysV服务管理脚本</a></li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#</span>
+<span class="c1"># chkconfig: - 86 14</span>
+<span class="c1"># description: Distributed memory caching daemon</span>
+
+<span class="c1">## Default variables</span>
+<span class="nv">PORT</span><span class="o">=</span><span class="s2">&quot;11211&quot;</span>
+<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;nobody&quot;</span>
+<span class="nv">MAXCONN</span><span class="o">=</span><span class="s2">&quot;1024&quot;</span>
+<span class="nv">CACHESIZE</span><span class="o">=</span><span class="s2">&quot;64&quot;</span>
+<span class="nv">OPTIONS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="nv">RETVAL</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">prog</span><span class="o">=</span><span class="s2">&quot;/usr/local/memcached/bin/memcached&quot;</span>
+<span class="nv">desc</span><span class="o">=</span><span class="s2">&quot;Distributed memory caching&quot;</span>
+<span class="nv">lockfile</span><span class="o">=</span><span class="s2">&quot;/var/lock/subsys/memcached&quot;</span>
+
+. /etc/rc.d/init.d/functions
+<span class="o">[</span> -f /etc/sysconfig/memcached <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> /etc/sysconfig/memcached
+
+start<span class="o">()</span> <span class="o">{</span>
+        <span class="nb">echo</span> -n $<span class="s2">&quot;Starting </span><span class="nv">$desc</span><span class="s2"> (memcached): &quot;</span>
+        daemon <span class="nv">$prog</span> -d -p <span class="nv">$PORT</span> -u <span class="nv">$USER</span> -c <span class="nv">$MAXCONN</span> -m <span class="nv">$CACHESIZE</span> <span class="s2">&quot;</span><span class="nv">$OPTIONS</span><span class="s2">&quot;</span>
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="nb">echo</span>
+        <span class="o">[</span> <span class="nv">$RETVAL</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> touch <span class="nv">$lockfile</span>
+        <span class="k">return</span> <span class="nv">$RETVAL</span>
+<span class="o">}</span>
+
+stop<span class="o">()</span> <span class="o">{</span>
+        <span class="nb">echo</span> -n $<span class="s2">&quot;Shutting down </span><span class="nv">$desc</span><span class="s2"> (memcached): &quot;</span>
+        killproc <span class="nv">$prog</span>
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="nb">echo</span>
+        <span class="o">[</span> <span class="nv">$RETVAL</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> rm -f <span class="nv">$lockfile</span>
+        <span class="k">return</span> <span class="nv">$RETVAL</span>
+<span class="o">}</span>
+
+restart<span class="o">()</span> <span class="o">{</span>
+        stop
+        start
+<span class="o">}</span>
+
+reload<span class="o">()</span> <span class="o">{</span>
+        <span class="nb">echo</span> -n $<span class="s2">&quot;Reloading </span><span class="nv">$desc</span><span class="s2"> (</span><span class="nv">$prog</span><span class="s2">): &quot;</span>
+        killproc <span class="nv">$prog</span> -HUP
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="nb">echo</span>
+        <span class="k">return</span> <span class="nv">$RETVAL</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+  start<span class="o">)</span>
+        start
+        <span class="p">;;</span>
+  stop<span class="o">)</span>
+        stop
+        <span class="p">;;</span>
+  restart<span class="o">)</span>
+        restart
+        <span class="p">;;</span>
+  condrestart<span class="o">)</span>
+        <span class="o">[</span> -e <span class="nv">$lockfile</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> restart
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="p">;;</span>
+  reload<span class="o">)</span>
+        reload
+        <span class="p">;;</span>
+  status<span class="o">)</span>
+        status <span class="nv">$prog</span>
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="p">;;</span>
+   *<span class="o">)</span>
+        <span class="nb">echo</span> $<span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|restart|reload|condrestart|status}&quot;</span>
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="m">1</span>
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="nv">$RETVAL</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="0-smallscript.html" class="btn btn-neutral" title="示例脚本" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

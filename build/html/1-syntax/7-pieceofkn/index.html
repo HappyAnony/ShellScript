@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>知识碎片 &mdash; ShellScript 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="ShellScript 1.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="常用类库" href="../../2-library/index.html"/>
+        <link rel="prev" title="函数" href="../6-functions/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ShellScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-variable/index.html">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-functions/index.html">函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ShellScript</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>知识碎片</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/7-pieceofkn/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>知识碎片<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>shell脚本是一种纯面向过程的脚本编程语言</p>
+<p>在编写shell脚本时，需要注意以下几点</p>
+<ul>
+<li><p class="first">标准输出：在编写shell脚本的时候，要考虑下该命令语句是否存在标准输出</p>
+<blockquote>
+<div><ul class="simple">
+<li>如果有，是否需要输出到标准输出设备上</li>
+<li>如果不需要，那就输出重定向至<code class="docutils literal"><span class="pre">/dev/null</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">常见逻辑错误</p>
+<blockquote>
+<div><ul class="simple">
+<li>用户输入是否为空问题</li>
+<li>用户输入字符串大小写问题</li>
+<li>用户输入是否存在问题</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">编程思想</p>
+<blockquote>
+<div><ul class="simple">
+<li>明确脚本的输入、输出是什么</li>
+<li>根据输入考虑可能存在逻辑错误的地方</li>
+<li>根据输出判断使用什么控制流程</li>
+<li>在保证功能实现的前提下进行优化精简代码</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>在编写shell脚本时，常用到的一些命令语句</p>
+<ul>
+<li><p class="first">判断用户是否存在</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">grep</span> <span class="pre">&quot;^$userName\&gt;&quot;</span> <span class="pre">/etc/passwd</span> <span class="pre">&amp;&gt;</span> <span class="pre">/dev/null</span></code></li>
+<li><code class="docutils literal"><span class="pre">id</span> <span class="pre">$userName</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">获取用户的相关信息(用户名，UID，GID或者默认shell)</p>
+<blockquote>
+<div><ul class="simple">
+<li>对<code class="docutils literal"><span class="pre">/etc/passwd</span></code>文件进行处理</li>
+<li>使用<code class="docutils literal"><span class="pre">id</span></code>命令</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">脚本文件中导入调用其它脚本文件</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">source</span> <span class="pre">config_file</span></code></li>
+<li><code class="docutils literal"><span class="pre">.</span> <span class="pre">config_file</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># configurefile: /tmp/script/myscript.conf</span>
+
+<span class="c1"># 先判断对导入文件是否有读权限，然后尝试导入</span>
+<span class="o">[</span> -r /tmp/script/myscript.conf <span class="o">]</span> <span class="o">&amp;&amp;</span> . /tmp/script/myscript.conf
+<span class="c1"># 如果导入文件没有成功或者导入文件中对引用变量没有相关定义时，需定义默认值，防止出错</span>
+<span class="nv">userName</span><span class="o">=</span><span class="si">${</span><span class="nv">userName</span><span class="k">:-</span><span class="nv">testuser</span><span class="si">}</span>
+
+<span class="nb">echo</span> <span class="nv">$userName</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>读取文件内容</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+        CMD_LIST
+<span class="k">done</span> &lt; /path/to/somefile
+</pre></div>
+</div>
+<ul class="simple">
+<li>下载文件</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">url</span><span class="o">=</span><span class="s2">&quot;http::/mirrors.aliyun.com/centos/centos6.5.repo&quot;</span>
+
+which wget <span class="p">&amp;</span>&gt; /dev/null <span class="o">||</span> <span class="nb">exit</span> <span class="m">5</span> <span class="c1"># 如果wget命令不存在就退出</span>
+
+<span class="nv">downloader</span><span class="o">=</span><span class="sb">`</span>which wget<span class="sb">`</span>  <span class="c1"># 获取wget命令的二进制文件路径</span>
+
+<span class="o">[</span> -x <span class="nv">$downloader</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">6</span> <span class="c1"># 如果二进制文件没有执行权限就退出</span>
+
+<span class="nv">$downloader</span> <span class="nv">$url</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>创建临时文件或目录</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>mktemp <span class="o">[</span>-d<span class="o">]</span> /tmp/file.XX   <span class="c1"># X指定越多，随机生成的后缀就越长，其中-d表示创建临时目录</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../2-library/index.html" class="btn btn-neutral float-right" title="常用类库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../6-functions/index.html" class="btn btn-neutral" title="函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

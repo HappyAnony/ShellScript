@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>脚本结构 &mdash; ShellScript 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="ShellScript 1.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="数据类型" href="../2-datatype/index.html"/>
+        <link rel="prev" title="语法基础" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ShellScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-variable/index.html">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-functions/index.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ShellScript</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>脚本结构</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/1-scriptstruct/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>脚本结构<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>我们在学习每一种编程语言时，都会先学习写一个<code class="docutils literal"><span class="pre">hello</span> <span class="pre">world</span></code>的demo程序，下面我们将从这个小demo程序来窥探一下我们<code class="docutils literal"><span class="pre">shell脚本</span></code>的程序结构</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 注释信息</span>
+
+<span class="nv">echo_str</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
+
+test<span class="o">(){</span>
+        <span class="nb">echo</span> <span class="nv">$echo_str</span>
+<span class="o">}</span>
+
+<span class="nb">test</span> echo_str
+</pre></div>
+</div>
+<p>首先我们可以通过<a class="reference external" href="http://codetoolchains.readthedocs.io/en/latest/1-TextEdit/index.html">文本编辑器</a>(在这里我们使用linux自带<a class="reference external" href="http://codetoolchains.readthedocs.io/en/latest/1-TextEdit/2-vim/index.html">文本编辑神器vim</a>)，新建一个文件<code class="docutils literal"><span class="pre">demo.sh</span></code>，文件扩展名<code class="docutils literal"><span class="pre">sh</span></code>代表<code class="docutils literal"><span class="pre">shell</span></code>，表明该文件是一个<code class="docutils literal"><span class="pre">shell脚本文件</span></code>，并不影响脚本的执行，然后将上述代码片段写入文件中，保存退出</p>
+<p>然后使用<code class="docutils literal"><span class="pre">bash</span> <span class="pre">-n</span> <span class="pre">demo.sh</span></code>命令可以检测刚才脚本文件的语法是否错误，如果没有回显结果就代表脚本文件没有语法错误</p>
+<p>关于上述脚本文件中的代码语法，这里我们简单说明下，详细说明介绍将在下述文档中一一展开</p>
+<ul class="simple">
+<li>脚本都以<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>开头，<code class="docutils literal"><span class="pre">#</span></code>称为<code class="docutils literal"><span class="pre">sharp</span></code>，<code class="docutils literal"><span class="pre">!</span></code>在unix行话里称为<code class="docutils literal"><span class="pre">bang</span></code>，合起来简称就是常见的<code class="docutils literal"><span class="pre">shabang</span></code>。<code class="docutils literal"><span class="pre">#!/bin/bash</span></code> 指定了shell脚本解释器bash的路径，即使用<code class="docutils literal"><span class="pre">bash</span></code>程序作为该脚本文件的解释器，当然也可以使用其它的解释器<code class="docutils literal"><span class="pre">/bin/sh</span></code>等，根据具体环境进行相应选择</li>
+<li><code class="docutils literal"><span class="pre">echo_str</span></code>是字符串变量，通过<code class="docutils literal"><span class="pre">$</span></code>进行引用变量的值，</li>
+<li><code class="docutils literal"><span class="pre">test</span></code>是自定义函数名，通过<code class="docutils literal"><span class="pre">函数名</span> <span class="pre">传入参数</span></code>格式进行函数的调用</li>
+<li><code class="docutils literal"><span class="pre">echo</span></code>是shell命令，相对于c中的<code class="docutils literal"><span class="pre">printf</span></code></li>
+<li><code class="docutils literal"><span class="pre">#</span></code>字符用来注释shell脚本的</li>
+</ul>
+<p>最后可以使用下列两种方式执行上述脚本</p>
+<ul>
+<li><p class="first">将脚本作为bash解释器的参数执行：此时首行的<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>shabang可以不用写</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">bash</span> <span class="pre">demo.sh</span></code>：直接将脚本文件作为bash命令的参数</li>
+<li><code class="docutils literal"><span class="pre">bash</span> <span class="pre">-x</span> <span class="pre">demo.sh</span></code>：使用<code class="docutils literal"><span class="pre">-x</span></code>参数可以查看脚本的详细执行过程</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">将脚本作为独立的可执行文件执行：此时首行的<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>shabang必须写，用来指定shell解释器路径；同时脚本必须可执行权限</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">demo.sh</span></code>：给脚本添加执行权限</li>
+<li><code class="docutils literal"><span class="pre">./demo.sh</span></code>：执行脚本文件，在这里需要使用<code class="docutils literal"><span class="pre">./demo.sh</span></code>表明当前目录下脚本，因为<code class="docutils literal"><span class="pre">PATH</span></code>环境变量中没有当前目录，写成<code class="docutils literal"><span class="pre">demo.sh</span></code>系统会去<code class="docutils literal"><span class="pre">/sbin、/sbin</span></code>等目录下查找该脚本，无法找到该脚本文件执行，造成报错</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../2-datatype/index.html" class="btn btn-neutral float-right" title="数据类型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="语法基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>变量 &mdash; ShellScript 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="ShellScript 1.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="操作符" href="../4-operator/index.html"/>
+        <link rel="prev" title="数据类型" href="../2-datatype/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ShellScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-functions/index.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ShellScript</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>变量</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/3-variable/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>变量<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>变量是一种逻辑概念，变量有三要素(也可称为三种属性)</p>
+<ul class="simple">
+<li>数据类型：变量存储数据的类型；用来确定该变量存储数据的内存大小以及存储数据所能支持的运算操作(解释器执行解释)</li>
+<li>变量类型：变量名的类型；用来确定该变量的作用域以及生命周期(关键字修饰决定)</li>
+<li>变量名：访问变量存储的数据；用来访问一段可读可写的连续内存空间(自定义命名)</li>
+</ul>
+<p>其中数据类型属性将在<a class="reference external" href="../2-datatype/index.html">数据类型</a>一章内容介绍</p>
+<p>在本章内容中主要介绍</p>
+<ul>
+<li><p class="first"><a class="reference external" href="#varnamel">变量名</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="#vartypel">变量类型</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="#locall">本地变量</a></li>
+<li><a class="reference external" href="#sidel">局部变量</a></li>
+<li><a class="reference external" href="#envl">环境变量</a></li>
+<li><a class="reference external" href="#positionl">位置变量</a></li>
+<li><a class="reference external" href="#speciall">特殊变量</a></li>
+<li><a class="reference external" href="#propertyl">变量属性</a></li>
+<li><a class="reference external" href="#varassignl">变量赋值</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="x00">
+<span id="varnamel"></span><h2>0x00 变量名<a class="headerlink" href="#x00" title="永久链接至标题">¶</a></h2>
+<p>变量是通过变量名进行声明、定义、赋值和引用；变量存在于内存中，对于shell变量而言，设置或修改变量属性以及变量值时，不需要带<code class="docutils literal"><span class="pre">$</span></code>，只有引用变量的值时才使用<code class="docutils literal"><span class="pre">$</span></code></p>
+<p>变量名的本质是：一段可读可写的连续内存空间的别名</p>
+<p>通过对变量名的引用就可以读写访问连续的内存空间</p>
+<p>变量名的命名须遵循如下规则：</p>
+<ul class="simple">
+<li>命名只能使用英文字母，数字和下划线，首个字符不能以数字开头</li>
+<li>中间不能有空格，可以使用下划线<code class="docutils literal"><span class="pre">_</span></code></li>
+<li>不能使用标点符号</li>
+<li>不能使用<code class="docutils literal"><span class="pre">bash</span></code>内嵌的关键字(可用<code class="docutils literal"><span class="pre">help</span></code>命令查看保留关键字)</li>
+<li>不能使用<a class="reference external" href="http://codetoolchains.readthedocs.io/en/latest/4-Linux/2-shellcmd/index.html">shell命令</a></li>
+</ul>
+</div>
+<div class="section" id="x01">
+<span id="vartypel"></span><h2>0x01 变量类型<a class="headerlink" href="#x01" title="永久链接至标题">¶</a></h2>
+<p>shell脚本是弱类型解释型的语言，变量类型由不同关键字声明决定；根据变量类型可将变量分为：(变量类型即变量名的类型，它决定变量的作用域以及定义引用的方式)</p>
+<blockquote>
+<div><ul class="simple">
+<li>本地变量</li>
+<li>局部变量</li>
+<li>环境变量</li>
+<li>位置变量</li>
+<li>特殊变量</li>
+<li>变量属性</li>
+</ul>
+</div></blockquote>
+<div class="section" id="x0100">
+<span id="locall"></span><h3>0x0100 本地变量<a class="headerlink" href="#x0100" title="永久链接至标题">¶</a></h3>
+<p>本地变量可以理解为全局变量，它的作用域为：只对当前shell进程有效，对其子shell以及其他shell都无效</p>
+<p>该类型变量的声明定义方式为：<code class="docutils literal"><span class="pre">[set]Var_Name=Value</span></code></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">set</span></code>关键字可以省略</li>
+<li>等号左右没有空格；如果有空格就是进行比较运算符的比较运算</li>
+<li>该变量可以声明定义在脚本的任何地方</li>
+<li>变量Var_Name可以是任意数据类型</li>
+</ul>
+<p>该类型变量的引用方式(获取变量的值)为：<code class="docutils literal"><span class="pre">$Var_Name</span></code>或<code class="docutils literal"><span class="pre">${Var_Name}</span></code></p>
+<ul class="simple">
+<li>可以在脚本的任意地方引用</li>
+</ul>
+<p>该类型变量的赋值方式(修改变量的值)为：<code class="docutils literal"><span class="pre">Var_Name=Value</span></code></p>
+<ul class="simple">
+<li>在脚本中任意地方的赋值都会覆盖之前的变量值</li>
+</ul>
+<p>该类型变量的撤销释放方式为：<code class="docutils literal"><span class="pre">unset</span> <span class="pre">Var_Name</span></code></p>
+<ul class="simple">
+<li>变量名前不加前缀<code class="docutils literal"><span class="pre">$</span></code></li>
+<li>撤销该变量后，引用该变量就会为空</li>
+</ul>
+<p>需要注意的是：</p>
+<ul class="simple">
+<li>如果使用<code class="docutils literal"><span class="pre">readonly</span></code>关键字修饰变量<code class="docutils literal"><span class="pre">Var_Name</span></code>，即<code class="docutils literal"><span class="pre">readonly</span> <span class="pre">Var_Name[=Value]</span></code>，此时将无法修改变量值也无法unset变量</li>
+<li>不接收任何参数的<code class="docutils literal"><span class="pre">set</span></code>或者<code class="docutils literal"><span class="pre">declare</span></code>关键字命令，将会输出当前所有有效的本地变量、局部变量和环境变量</li>
+</ul>
+<p>示例程序如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">test_str</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
+<span class="nb">readonly</span> <span class="nv">ro_str</span><span class="o">=</span><span class="s2">&quot;test&quot;</span>
+test_one<span class="o">(){</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_str in test_one is </span><span class="nv">$test_str</span><span class="s2">&quot;</span>
+        <span class="nv">test_str</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span>
+        <span class="nv">test_name</span><span class="o">=</span><span class="s2">&quot;anony&quot;</span>
+        <span class="nb">unset</span> test_set    <span class="c1"># 撤销变量test_set，之后引用该变量就会为空</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_set in test_one is </span><span class="nv">$test_set</span><span class="s2">&quot;</span>
+        <span class="nv">ro_str</span><span class="o">=</span><span class="s2">&quot;tset&quot;</span>     <span class="c1"># 该变量被readonly修饰，不能修改其变量值，将会出现语法错误，直接退出函数，不执行下列命令</span>
+        <span class="nb">echo</span> <span class="s2">&quot;ro_str&quot;</span>     <span class="c1"># 上述直接退出函数，该命令不会执行</span>
+<span class="o">}</span>
+
+test_two<span class="o">()</span>
+<span class="o">{</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_str in test_two is </span><span class="nv">$test_str</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_name in test_two is </span><span class="nv">$test_name</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_set in test_two is </span><span class="nv">$test_set</span><span class="s2">&quot;</span>
+
+<span class="o">}</span>
+
+test_one
+test_two
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># test_str in test_one is hello world</span>
+<span class="c1"># test_set in test_one is               # echo显示为空</span>
+<span class="c1"># ./demo.sh: line 9: ro_str: readonly variable</span>
+<span class="c1"># test_str in test_two is happy</span>
+<span class="c1"># test_name in test_two is anony</span>
+<span class="c1"># test_set in test_two is               # echo显示为空</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0101">
+<span id="sidel"></span><h3>0x0101 局部变量<a class="headerlink" href="#x0101" title="永久链接至标题">¶</a></h3>
+<p>局部变量的作用域为：只对变量声明定义所在函数内有效</p>
+<p>该类型变量的声明定义方式为：<code class="docutils literal"><span class="pre">loca</span> <span class="pre">Var_Name=Value</span></code></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">local</span></code>关键字不能省略，否则就是本地全局变量</li>
+<li>等号左右没有空格；如果有空格就是进行比较运算符的比较运算</li>
+<li>该变量只能声明定义在函数体内，否则会语法报错</li>
+<li>变量Var_Name可以是任意数据类型</li>
+</ul>
+<p>该类型变量的引用方式(获取变量的值)为：<code class="docutils literal"><span class="pre">$Var_Name</span></code>或<code class="docutils literal"><span class="pre">${Var_Name}</span></code></p>
+<ul class="simple">
+<li>只能在声明定义的函数体内引用，其它地方引用将为空</li>
+</ul>
+<p>该类型变量的赋值方式(修改变量的值)为：<code class="docutils literal"><span class="pre">Var_Name=Value</span></code></p>
+<p>该类型变量的撤销释放方式为：<code class="docutils literal"><span class="pre">unset</span> <span class="pre">Var_Name</span></code></p>
+<ul class="simple">
+<li>变量名前不加前缀<code class="docutils literal"><span class="pre">$</span></code></li>
+<li>撤销该变量后，引用该变量就会为空</li>
+</ul>
+<p>需要注意的是：</p>
+<ul class="simple">
+<li>如果使用<code class="docutils literal"><span class="pre">readonly</span></code>关键字修饰变量<code class="docutils literal"><span class="pre">Var_Name</span></code>，即<code class="docutils literal"><span class="pre">readonly</span> <span class="pre">Var_Name[=Value]</span></code>，此时将无法修改变量值也无法unset变量</li>
+<li>不接收任何参数的<code class="docutils literal"><span class="pre">set</span></code>或者<code class="docutils literal"><span class="pre">declare</span></code>关键字命令，将会输出当前所有有效的本地变量、局部变量和环境变量</li>
+</ul>
+<p>示例程序如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">test_str</span><span class="o">=</span><span class="s2">&quot;anony&quot;</span>
+test_one<span class="o">(){</span>
+        <span class="nb">local</span> <span class="nv">test_str</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span>   <span class="c1"># 局部变量test_str会覆盖全局变量test_str</span>
+        <span class="nb">local</span> <span class="nv">test_local</span><span class="o">=</span><span class="s2">&quot;test&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_str in test_one is </span><span class="nv">$test_str</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_local in test_one is </span><span class="nv">$test_local</span><span class="s2">&quot;</span>
+        <span class="nb">unset</span> test_str          <span class="c1"># 只会撤销局部变量test_str，不会撤销全局变量test_str</span>
+<span class="o">}</span>
+
+test_two<span class="o">()</span>
+<span class="o">{</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_str in test_two is </span><span class="nv">$test_str</span><span class="s2">&quot;</span>      <span class="c1"># unset没有撤销全局变量test_str</span>
+        <span class="nb">echo</span> <span class="s2">&quot;test_local in test_two is </span><span class="nv">$test_local</span><span class="s2">&quot;</span>  <span class="c1"># test_local是定义在test_one函数中的局部变量，该处引用将会为空</span>
+
+<span class="o">}</span>
+
+test_one
+test_two
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># test_str in test_one is happy</span>
+<span class="c1"># test_local in test_one is test</span>
+<span class="c1"># test_str in test_two is anony</span>
+<span class="c1"># test_local in test_two is</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0102">
+<span id="envl"></span><h3>0x0102 环境变量<a class="headerlink" href="#x0102" title="永久链接至标题">¶</a></h3>
+<p>环境变量可以用来</p>
+<ul class="simple">
+<li>定义bash的工作特性</li>
+<li>保存当前会话的属性信息</li>
+</ul>
+<p>关于环境变量的生命周期和作用域可以参考：<a class="reference external" href="../../../1-shellenv/1-shellsoft/index.html">bash环境配置</a></p>
+<p>shell环境变量有两种来源</p>
+<ul>
+<li><p class="first">系统环境变量</p>
+<blockquote>
+<div><ul>
+<li><p class="first">该环境变量已经由bash定义初始化，不用重新声明定义，只要引用就可以</p>
+<blockquote>
+<div><ul>
+<li><p class="first">使用<code class="docutils literal"><span class="pre">env</span></code>、<code class="docutils literal"><span class="pre">export</span></code>、<code class="docutils literal"><span class="pre">set</span></code>、<code class="docutils literal"><span class="pre">declare</span></code>或<code class="docutils literal"><span class="pre">printenv</span></code>可以查看当前用户的环境变量(包括系统环境变量和自定义环境变量)，以下列出部分bash默认系统环境变量(<code class="docutils literal"><span class="pre">set</span></code>和<code class="docutils literal"><span class="pre">declare</span></code>可以查看所有环境变量，其它三个命令只能查看部分环境变量)</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">$BASH</span></code>：bash二进制程序文件的路径</li>
+<li><code class="docutils literal"><span class="pre">$BASH_SUBSHELL</span></code>：子shell的层次说明，说明用户在哪一个层次中</li>
+<li><code class="docutils literal"><span class="pre">$BASH_VERSION</span></code>：bash的版本</li>
+<li><code class="docutils literal"><span class="pre">$EDITOR</span></code>：指定默认编辑器</li>
+<li><code class="docutils literal"><span class="pre">$EUID</span></code>：有效的用户ID</li>
+<li><code class="docutils literal"><span class="pre">$UID</span></code>：当前用户的ID号</li>
+<li><code class="docutils literal"><span class="pre">$USER</span></code>：当前用户名</li>
+<li><code class="docutils literal"><span class="pre">$PATH</span></code>：自动搜索路径</li>
+<li><code class="docutils literal"><span class="pre">$LANG</span></code>：系统使用语系</li>
+<li><code class="docutils literal"><span class="pre">LOGNAME</span></code>：当前登录的用户</li>
+<li><code class="docutils literal"><span class="pre">$FUNCNAME</span></code>：当前函数的名称，在函数中引用想判断自己是什么函数</li>
+<li><code class="docutils literal"><span class="pre">$GROUPS</span></code>：当前用户所属的组</li>
+<li><code class="docutils literal"><span class="pre">$HOME</span></code>：当前用户的家目录</li>
+<li><code class="docutils literal"><span class="pre">$HOSTTYPE</span></code>：主机架构类型，用来识别系统硬件平台</li>
+<li><code class="docutils literal"><span class="pre">$MACHTYPE</span></code>：平台类型，系统平台依赖的编译平台</li>
+<li><code class="docutils literal"><span class="pre">$OSTYPE</span></code>：OS系统类型</li>
+<li><code class="docutils literal"><span class="pre">$IFS</span></code>：输入数据时的默认字段分隔符，默认是空白符(空格、制表符、换行符)</li>
+<li><code class="docutils literal"><span class="pre">$OLDPWD</span></code>：上次使用的目录</li>
+<li><code class="docutils literal"><span class="pre">$PWD</span></code>：当前目录</li>
+<li><code class="docutils literal"><span class="pre">$PPID</span></code>：父进程</li>
+<li><code class="docutils literal"><span class="pre">$PS1</span></code>：主提示符，即bash命令窗口提示符</li>
+<li><code class="docutils literal"><span class="pre">$PS2</span></code>：第二提示符，主要用于补充完全命令输入时的提示符</li>
+<li><code class="docutils literal"><span class="pre">$PS3</span></code>：第三提示符，用于select命令中</li>
+<li><code class="docutils literal"><span class="pre">$PS4</span></code>：第四提示符，当使用-X选项调用脚本时，显示的提示符，默认为+号</li>
+<li><code class="docutils literal"><span class="pre">$SECONDS</span></code>：当前脚本已经运行的时长，单位为秒</li>
+<li><code class="docutils literal"><span class="pre">$SHLVL</span></code>：shell的级别，bash被嵌入的深度</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">系统环境变量常用大写字母表示</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">系统环境变量作用域</p>
+<blockquote>
+<div><ul>
+<li><p class="first">执行脚本前，原始系统环境变量对当前用户所有shell进程(包含不同终端bash进程以及其子shell进程)都有效</p>
+</li>
+<li><p class="first">执行脚本时，系统环境变量对当前shell进程以及子shell进程都有效</p>
+</li>
+<li><p class="first">执行脚本后</p>
+<blockquote>
+<div><ul class="simple">
+<li>如果使用source命令执行脚本，修改后的系统环境变量会覆盖之前的系统环境变量，但是修改后的变量值只对当前终端bash进程以及其子shell进程才有效；原始变量值依然对当前用户所有shell进程(包含不同终端bash进程以及其子shell进程)都有效</li>
+<li>如果使用<code class="docutils literal"><span class="pre">./demo.sh</span></code>和<code class="docutils literal"><span class="pre">bash</span> <span class="pre">demo.sh</span></code>执行脚本，修改后的系统环境变量不会覆盖之前的系统环境变量，即所以系统环境变量依然保持原值，依然对当前用户所有shell进程(包含不同终端bash进程以及其子shell进程)都有效</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">自定义环境变量</p>
+<blockquote>
+<div><ul>
+<li><p class="first">该环境变量是使用<code class="docutils literal"><span class="pre">export</span></code>命令将全局变量或局部变量导出成环境变量，需要手动声明定义</p>
+<blockquote>
+<div><ul class="simple">
+<li>方式一：<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name=Value</span></code></li>
+<li>方式二：<code class="docutils literal"><span class="pre">Var_Name=Value</span></code>、<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name</span></code></li>
+<li>自定义环境变量名尽量避免与系统环境变量名冲突；等号左右没有空格；如果有空格就是进行比较运算符的比较运算</li>
+<li>变量<code class="docutils literal"><span class="pre">Var_Name</span></code>可以是全局变量或局部变量，也可以是任意数据类型</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">自定义环境变量作用域</p>
+<blockquote>
+<div><ul>
+<li><p class="first">执行脚本时，自定义环境变量才被声明定义，同时继承全局变量或局部变量的作用域</p>
+</li>
+<li><p class="first">执行脚本后</p>
+<blockquote>
+<div><ul class="simple">
+<li>如果使用<code class="docutils literal"><span class="pre">./demo.sh</span></code>和<code class="docutils literal"><span class="pre">bash</span> <span class="pre">demo.sh</span></code>执行脚本，自定义环境变量不会导出成系统环境变量，即脚本执行完胡，该类环境变量会自动撤销</li>
+<li>如果使用<code class="docutils literal"><span class="pre">source</span> <span class="pre">demo.sh</span></code>执行脚本，只有全局环境变量才能导出成bash环境变量，局部环境变量会自动被撤销；但是导出后的全局环境变量只对当前终端bash进程以及其子shell进程才有效</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>不管是系统环境变量还是自定义环境变量都可以通过以下方式进行引用(获取环境变量的值)：<code class="docutils literal"><span class="pre">$Var_Name</span></code>或<code class="docutils literal"><span class="pre">${Var_Name}</span></code></p>
+<ul class="simple">
+<li>在环境变量的作用域之内引用</li>
+<li>变量名<code class="docutils literal"><span class="pre">Var_Name</span></code>可以是系统环境变量名，又可以是自定义环境变量名</li>
+</ul>
+<p>不管是系统环境变量还是自定义环境变量都可以通过以下方式进行赋值(修改环境变量的值)：对当前shell进程来说通过该方式赋值修改的环境变量继承之前的作用域</p>
+<ul class="simple">
+<li>方式一：<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name=Value</span></code></li>
+<li>方式二：<code class="docutils literal"><span class="pre">Var_Name=Value</span></code>、<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name</span></code></li>
+</ul>
+<p>不管是系统环境变量还是自定义环境变量都可以通过下列方式进行撤销释放：<code class="docutils literal"><span class="pre">unset</span> <span class="pre">Var_Name</span></code></p>
+<ul class="simple">
+<li>变量名前不加前缀<code class="docutils literal"><span class="pre">$</span></code></li>
+<li>撤销该变量后，引用该变量就会为空</li>
+</ul>
+<p>需要注意的是：</p>
+<ul class="simple">
+<li>如果使用<code class="docutils literal"><span class="pre">readonly</span></code>关键字修饰变量<code class="docutils literal"><span class="pre">Var_Name</span></code>，即<code class="docutils literal"><span class="pre">readonly</span> <span class="pre">Var_Name[=Value]</span></code>，此时将无法修改变量值也无法unset变量</li>
+<li>不接收任何参数的<code class="docutils literal"><span class="pre">set</span></code>或者<code class="docutils literal"><span class="pre">declare</span></code>关键字命令，将会输出当前所有有效的本地变量、局部变量和环境变量</li>
+</ul>
+<p>示例程序如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+test_one<span class="o">(){</span>
+        <span class="nv">PATH</span><span class="o">=</span>./:<span class="nv">$PATH</span>            <span class="c1"># 修改系统环境变量的值</span>
+        <span class="nb">export</span> PATH              <span class="c1"># 导出系统环境变量使其生效</span>
+        <span class="nb">export</span> <span class="nv">MYNAME</span><span class="o">=</span><span class="s2">&quot;anony&quot;</span>    <span class="c1"># 将全局变量导出成环境变量</span>
+        <span class="nb">local</span> <span class="nv">MYSEX</span><span class="o">=</span><span class="s2">&quot;man&quot;</span>        <span class="c1"># 定义局部变量</span>
+        <span class="nb">export</span> MYSEX             <span class="c1"># 将局部变量导出成环境变量</span>
+        <span class="nb">export</span> <span class="nv">MYBLOG</span><span class="o">=</span><span class="s2">&quot;blog&quot;</span>
+        <span class="nb">export</span> <span class="nv">MYAGE</span><span class="o">=</span><span class="s2">&quot;22&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;PATH in test_one is </span><span class="nv">$PATH</span><span class="s2">&quot;</span>      <span class="c1"># 上述所有定义的环境变量都有效</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYNAME in test_one is </span><span class="nv">$MYNAME</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYSEX in test_one is </span><span class="nv">$MYSEX</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYBLOG in test_one is </span><span class="nv">$MYBLOG</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYAGE in test_one is </span><span class="nv">$MYAGE</span><span class="s2">&quot;</span>
+        <span class="nb">unset</span> MYBLOG             <span class="c1"># 撤销全局变量导出成的环境变量</span>
+        <span class="nb">readonly</span> MYAGE           <span class="c1"># 将全局变量导出成的环境变量修改为只读变量</span>
+        <span class="nv">MYAGE</span><span class="o">=</span><span class="s2">&quot;23&quot;</span>               <span class="c1"># 对只读变量进行赋值修改会造成语法错误</span>
+<span class="o">}</span>
+
+test_two<span class="o">()</span>
+<span class="o">{</span>
+        <span class="nb">echo</span> <span class="s2">&quot;PATH in test_two is </span><span class="nv">$PATH</span><span class="s2">&quot;</span>          <span class="c1"># 系统变量的作用域</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYNAME in test_two is </span><span class="nv">$MYNAME</span><span class="s2">&quot;</span>      <span class="c1"># 全局环境变量的作用域</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYSEX in test_two is </span><span class="nv">$MYSEX</span><span class="s2">&quot;</span>        <span class="c1"># 局部环境变量的作用域</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYBLOG in test_two is </span><span class="nv">$MYBLOG</span><span class="s2">&quot;</span>      <span class="c1"># 全局环境变量已经撤销</span>
+        <span class="nb">echo</span> <span class="s2">&quot;MYAGE in test_two is </span><span class="nv">$MYAGE</span><span class="s2">&quot;</span>        <span class="c1"># 全局环境变量只读</span>
+<span class="o">}</span>
+
+test_one
+test_two
+
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># PATH in test_one is ./:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span>
+<span class="c1"># MYNAME in test_one is anony</span>
+<span class="c1"># MYSEX in test_one is man</span>
+<span class="c1"># MYBLOG in test_one is blog</span>
+<span class="c1"># MYAGE in test_one is 22</span>
+<span class="c1"># ./demo.sh: line 20: MYAGE: readonly variable</span>
+<span class="c1"># PATH in test_two is ./:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span>
+<span class="c1"># MYNAME in test_two is anony</span>
+<span class="c1"># MYSEX in test_two is</span>
+<span class="c1"># MYBLOG in test_two is</span>
+<span class="c1"># MYAGE in test_two is 22</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0103">
+<span id="positionl"></span><h3>0x0103 位置变量<a class="headerlink" href="#x0103" title="永久链接至标题">¶</a></h3>
+<p>位置变量无需声明定义，直接引用即可；该变量也不能被赋值修改，甚至不能被unset撤销</p>
+<p>位置变量是用来实现</p>
+<ul>
+<li><p class="first">在函数体外直接引用脚本的传入参数，它引用方式如下</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">$0</span></code>：引用脚本名</li>
+<li><code class="docutils literal"><span class="pre">$1</span></code>：引用脚本的第1个传入参数</li>
+<li><code class="docutils literal"><span class="pre">$n</span></code>：引用脚本的第n个传入参数</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">在函数体内直接引用函数的传入参数，它引用方式如下</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">$0</span></code>：引用脚本名</li>
+<li><code class="docutils literal"><span class="pre">$1</span></code>：引用函数的第1个传入参数</li>
+<li><code class="docutils literal"><span class="pre">$n</span></code>：引用函数的第n个传入参数</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>示例程序如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&quot;script name is </span><span class="nv">$0</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;the script first arg is </span><span class="nv">$1</span><span class="s2">&quot;</span>  <span class="c1"># 引用脚本的第一个传入参数</span>
+test<span class="o">(){</span>
+        <span class="nb">echo</span> <span class="s2">&quot;script name is </span><span class="nv">$0</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the func first arg in test is </span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="c1"># 引用函数的第一个传入参数，不是脚本的第一个参数</span>
+<span class="o">}</span>
+<span class="nb">test</span> <span class="m">26</span>
+
+<span class="c1"># 执行结果如下：./test.sh 12</span>
+<span class="c1"># script name is ./test.sh</span>
+<span class="c1"># the script first arg is 12</span>
+<span class="c1"># script name is ./test.sh</span>
+<span class="c1"># the func first arg in test is 26</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0104">
+<span id="speciall"></span><h3>0x0104 特殊变量<a class="headerlink" href="#x0104" title="永久链接至标题">¶</a></h3>
+<p>特殊变量也无需声明定义，直接引用即可；该变量也不能被赋值修改，甚至不能被unset撤销</p>
+<p>特殊变量的引用方式如下</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">$?</span></code>：引用上一条命令的执行状态返回值，状态用数字表示：0-255</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">0</span></code>：表示成功</li>
+<li><code class="docutils literal"><span class="pre">1-255</span></code>：表示失败；需要注意的是<code class="docutils literal"><span class="pre">1/2/127/255</span></code>是系统预留的，自己写脚本时要避开与这些值重复</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$$</span></code>：引用当前shell的PID。除了执行bash命令和shell脚本时，$$不会继承父shell的值，其他类型的子shell都继承</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$BASHPID</span></code>：引用当前shell的PID，这和<code class="docutils literal"><span class="pre">$$</span></code>是不同的，因为每个shell的$BASHPID是独立的，而<code class="docutils literal"><span class="pre">$$</span></code>有时候会继承父shell的值</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$!</span></code>：引用最近一次执行的后台进程PID，即运行于后台的最后一个作业的PID</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$#</span></code>：引用所有位置参数的个数</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$*</span></code>：引用所有位置参数的整体，即所有参数被当做一个字符串</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$&#64;</span></code>：引用所有单个位置参数，即每个参数都是一个独立的字符串</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$_</span></code>：引用上一条命令的最后一个参数的值</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$-</span></code>：引用传递给脚本的标记</p>
+</li>
+</ul>
+<p>示例程序如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;$# is:&#39;</span><span class="nv">$#</span>
+<span class="nb">echo</span> <span class="s1">&#39;$* is:&#39;</span><span class="nv">$*</span>
+<span class="nb">echo</span> <span class="s1">&#39;$@ is:&#39;</span><span class="nv">$@</span>
+<span class="nb">echo</span> <span class="s1">&#39;$! is:&#39;</span><span class="nv">$!</span>
+<span class="nb">echo</span> <span class="s1">&#39;$$ is:&#39;</span><span class="nv">$$</span>
+<span class="nb">echo</span> <span class="s1">&#39;$BASHPID is:&#39;</span><span class="nv">$BASHPID</span>
+<span class="nb">echo</span> <span class="s1">&#39;$? is:&#39;</span><span class="nv">$?</span>
+test<span class="o">(){</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$# in func is:&#39;</span><span class="nv">$#</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$* in func is:&#39;</span><span class="nv">$*</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$@ in func is:&#39;</span><span class="nv">$@</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$! in func is:&#39;</span><span class="nv">$!</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$$ in func is:&#39;</span><span class="nv">$$</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$BASHPID in func is:&#39;</span><span class="nv">$BASHPID</span>
+        <span class="nb">echo</span> <span class="s1">&#39;$? in func is:&#39;</span><span class="nv">$?</span>
+<span class="o">}</span>
+<span class="nb">test</span> <span class="m">26</span> <span class="m">23</span> <span class="m">47</span>
+
+<span class="c1"># 执行结果如下：[root@localhost ~]# ./test.sh 1 3 4 5 6 7</span>
+<span class="c1"># $# is:6</span>
+<span class="c1"># $* is:1 3 4 5 6 7</span>
+<span class="c1"># $@ is:1 3 4 5 6 7</span>
+<span class="c1"># $! is:</span>
+<span class="c1"># $$ is:4002</span>
+<span class="c1"># $BASHPID is:4002</span>
+<span class="c1"># $? is:0</span>
+<span class="c1"># $# in func is:3</span>
+<span class="c1"># $* in func is:26 23 47</span>
+<span class="c1"># $@ in func is:26 23 47</span>
+<span class="c1"># $! in func is:</span>
+<span class="c1"># $$ in func is:4002</span>
+<span class="c1"># $BASHPID in func is:4002</span>
+<span class="c1"># $? in func is:0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0105">
+<span id="propertyl"></span><h3>0x0105 变量属性<a class="headerlink" href="#x0105" title="永久链接至标题">¶</a></h3>
+<p>此处的变量属性是指<code class="docutils literal"><span class="pre">数据类型</span></code>和<code class="docutils literal"><span class="pre">变量类型</span></code>，这两个属性可以通过相关命令关键字进行修改，例如：</p>
+<p><code class="docutils literal"><span class="pre">Var_Name=Value</span></code>语句中声明定义的变量<code class="docutils literal"><span class="pre">Var_Name</span></code>默认的数据类型是<code class="docutils literal"><span class="pre">字符串类型</span></code>，变量类型是<code class="docutils literal"><span class="pre">本地全局变量</span></code></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">local</span> <span class="pre">Var_Name</span></code>声明该变量为局部变量</li>
+<li><code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name</span></code>声明该变量为环境变量</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-x</span> <span class="pre">Var_Name</span></code>声明该变量为环境变量</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">+x</span> <span class="pre">Var_Name</span></code>取消该变量的环境变量属性</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-i</span> <span class="pre">Var_Name</span></code>声明该变量为整型变量</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">+i</span> <span class="pre">Var_Name</span></code>取消该变量的整型变量属性</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-p</span> <span class="pre">Var_Name</span></code>显式指定变量被声明的类型</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-r</span> <span class="pre">Var_Name</span></code>声明该变量为只读变量，不能撤销，不能修改，相当于readonly，只有当前进程终止才消失</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">+r</span> <span class="pre">Var_Name</span></code>取消该变量的只读变量属性</li>
+</ul>
+<p>可以使用<code class="docutils literal"><span class="pre">man</span> <span class="pre">declare</span></code>查看<code class="docutils literal"><span class="pre">declare</span></code>命令的详细使用方法</p>
+</div>
+<div class="section" id="x0106">
+<span id="varassignl"></span><h3>0x0106 变量赋值<a class="headerlink" href="#x0106" title="永久链接至标题">¶</a></h3>
+<p>除了上述介绍的<code class="docutils literal"><span class="pre">Var_Name=Value</span></code>赋值方式，还有以下变量赋值的方式，以下赋值方式常用来给变量赋默认值</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">${var:-default}</span></code>：如果var没有声明或者声明了为空，则返回default代表的值；如果var声明了不为空，则返回var代表的值</li>
+<li><code class="docutils literal"><span class="pre">${var-default}</span></code>：如果var没有声明，则返回default代表的值；如果var声明了但是为空，则返回null；如果var声明了不为空，则返回var代表的值</li>
+<li><code class="docutils literal"><span class="pre">${var:+default}</span></code>：如果var没有声明或者声明了为空，不做任何操作，返回空；如果var声明了不为空，则返回default代表的值</li>
+<li><code class="docutils literal"><span class="pre">${var:=default}</span></code>：如果var没有声明或者声明了为空，则返回default代表的值，并将default的值赋值给var；如果var声明了不为空，则返回var代表的值</li>
+<li><code class="docutils literal"><span class="pre">${var:?default}</span></code>：如果var没有声明或者声明了为空，则以default为错误信息返回；如果var声明了不为空，则返回var代表的值</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../4-operator/index.html" class="btn btn-neutral float-right" title="操作符" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../2-datatype/index.html" class="btn btn-neutral" title="数据类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

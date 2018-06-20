@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>函数 &mdash; ShellScript 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="ShellScript 1.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="知识碎片" href="../7-pieceofkn/index.html"/>
+        <link rel="prev" title="控制流程语句" href="../5-control/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ShellScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-variable/index.html">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ShellScript</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/6-functions/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>在编程语言中，函数是能够实现模块化编程的工具，每个函数都是一个功能组件，但是函数必须被调用才能执行</p>
+<p>函数存在的主要作用在于：最大化代码重用，最小化代码冗余</p>
+<p>在shell中，函数可以被当做命令一样执行，它的本质是命令的组合结构体，即可以将函数看成一个普通命令或一个小型脚本。接下来本章内容将从以下几个方面来介绍函数</p>
+<ul class="simple">
+<li><a class="reference external" href="#funcdefine">函数定义</a></li>
+<li><a class="reference external" href="#funccall">函数调用</a></li>
+<li><a class="reference external" href="#funcexit">函数退出</a></li>
+<li><a class="reference external" href="#funccode">示例代码</a></li>
+</ul>
+<div class="section" id="x00">
+<span id="funcdefine"></span><h2>0x00 函数定义<a class="headerlink" href="#x00" title="永久链接至标题">¶</a></h2>
+<p>在shell中函数定义的方法有两种(使用<code class="docutils literal"><span class="pre">help</span> <span class="pre">function</span></code>命令可以查看)</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># 方法一</span>
+<span class="k">function</span> FuncName <span class="o">{</span>
+        COMMANDS_LIST
+<span class="o">}</span> <span class="o">[</span><span class="p">&amp;</span>&gt;/dev/null<span class="o">]</span>
+
+<span class="c1"># 方法二</span>
+FuncName<span class="o">()</span> <span class="o">{</span>
+        COMMANDS_LIST
+<span class="o">}</span> <span class="o">[</span><span class="p">&amp;</span>&gt;/dev/null<span class="o">]</span>
+</pre></div>
+</div>
+<p>上面两种函数定义方法定义了一个名为<code class="docutils literal"><span class="pre">FuncName</span></code>的函数</p>
+<ul class="simple">
+<li>方法一中：使用了<code class="docutils literal"><span class="pre">function</span></code>关键字，此时函数名<code class="docutils literal"><span class="pre">FuncName</span></code>后面的括号可以省略</li>
+<li>方法二中：省略了<code class="docutils literal"><span class="pre">function</span></code>关键字，此时函数名<code class="docutils literal"><span class="pre">FuncName</span></code>后面的括号不能省略</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">COMMANDS_LIST</span></code>是函数体，它与以下特点</p>
+<ul class="simple">
+<li>函数体通常使用大括号<code class="docutils literal"><span class="pre">{}</span></code>包围，由于历史原因，在shell中大括号本身也是关键字，所以为了不产生歧义，函数体和大括号之间必须使用<code class="docutils literal"><span class="pre">空格、制表符、换行符</span></code>分隔开来；一般我们都是通过换行符进行分隔</li>
+<li>函数体中的每一个命令必须使用<code class="docutils literal"><span class="pre">;</span></code>或<code class="docutils literal"><span class="pre">换行符</span></code>进行分隔；如果使用<code class="docutils literal"><span class="pre">&amp;</span></code>结束某条命令，则表示该条命令会放入后台执行</li>
+</ul>
+<p>需要注意的是</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&amp;&gt;/dev/null</span></code>表示将函数体执行过程中可能输出的信息重定向至<code class="docutils literal"><span class="pre">/dev/null</span></code>中，该功能可选</li>
+<li>定义函数时，还可以指定可选的函数重定向功能，这样当函数被调用的时候，指定的重定向也会被执行</li>
+<li>当前shell定义的函数只能在当前shell使用，子shell无法继承父shell的函数定义，除非使用<code class="docutils literal"><span class="pre">export</span> <span class="pre">-f</span></code>将函数导出为全局函数；如果想取消函数的导出可以使用<code class="docutils literal"><span class="pre">export</span> <span class="pre">-n</span></code></li>
+<li>定义了函数后，可以使用<code class="docutils literal"><span class="pre">unset</span> <span class="pre">-f</span></code>移除当前shell中已定义的函数</li>
+<li>可以使用<code class="docutils literal"><span class="pre">typeset</span> <span class="pre">-f</span> <span class="pre">[func_name]</span></code>或<code class="docutils literal"><span class="pre">declare</span> <span class="pre">-f</span> <span class="pre">[func_name]</span></code>查看当前shell已定义的函数名和对应的定义语句；使用<code class="docutils literal"><span class="pre">typeset</span> <span class="pre">-F</span></code>或<code class="docutils literal"><span class="pre">declare</span> <span class="pre">-F</span></code>则只显示当前shell中已定义的函数名</li>
+<li>只有先定义了函数，才可以调用函数；不允许函数调用语句在函数定义语句之前</li>
+<li>在shell脚本中，函数没有形参的概念，使用方法二定义函数时，括号里什么都不用写，只需要在函数体内使用相关的调用机制调用接收参数即可</li>
+</ul>
+</div>
+<div class="section" id="x01">
+<span id="funccall"></span><h2>0x01 函数调用<a class="headerlink" href="#x01" title="永久链接至标题">¶</a></h2>
+<p>函数的调用格式如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>FuncName ARGS_LIST
+</pre></div>
+</div>
+<p>其中</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FuncName</span></code>：表示被调用函数的函数名，需要注意的是在shell中函数调用时函数名后面没有<code class="docutils literal"><span class="pre">()</span></code>操作符</li>
+<li><code class="docutils literal"><span class="pre">ARGS_LIST</span></code>：表示被调用函数的传入参数，在shell中给函数传入参数和脚本接收参数的方法相似，直接在函数名后面加上需要传入的参数即可</li>
+</ul>
+<p>函数调用时需要注意以下几点</p>
+<ul class="simple">
+<li>如果函数名和命令名相同，则优先执行函数，除非使用<code class="docutils literal"><span class="pre">command</span></code>命令。例如：定义了一个名为<code class="docutils literal"><span class="pre">rm</span></code>的函数，在bash中输入<code class="docutils literal"><span class="pre">rm</span></code>执行时，执行的是<code class="docutils literal"><span class="pre">rm函数</span></code>，而非<code class="docutils literal"><span class="pre">/bin/rm命令</span></code>，除非使用<code class="docutils literal"><span class="pre">command</span> <span class="pre">rm</span> <span class="pre">ARGS</span></code>，表示执行的是<code class="docutils literal"><span class="pre">/bin/rm命令</span></code></li>
+<li>如果函数名和命令别名相同，则优先执行命令别名，即在优先级方面：<code class="docutils literal"><span class="pre">别名别名&gt;函数&gt;命令自身</span></code></li>
+</ul>
+<p>当函数调用函数被执行时，它的执行逻辑如下</p>
+<ul>
+<li><p class="first">接收参数：shell函数也接受位置参数变量，但函数的位置参数是调用函数时传递给函数的，而非传递给脚本的参数，所以脚本的位置变量和函数的位置变量是不同的；同时shell函数也接收特殊变量。函数体内引用位置参数和特殊变量方式如下</p>
+<blockquote>
+<div><ul>
+<li><p class="first">位置参数</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">$0</span></code>：和脚本位置参数一样，引用脚本名称</li>
+<li><code class="docutils literal"><span class="pre">$1</span></code>：引用函数的第1个传入参数</li>
+<li><code class="docutils literal"><span class="pre">$n</span></code>：引用函数的第n个传入参数</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">特殊变量</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">$?</span></code>：引用上一条命令的执行状态返回值，状态用数字表示<code class="docutils literal"><span class="pre">0-255</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">0</span></code>：表示成功</li>
+<li><code class="docutils literal"><span class="pre">1-255</span></code>：表示失败；其中<code class="docutils literal"><span class="pre">1/2/127/255</span></code>是系统预留的，写脚本时要避开与这些值重复</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$$</span></code>：引用当前shell的PID。除了执行bash命令和shell脚本时，$$不会继承父shell的值，其他类型的子shell都继承</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$!</span></code>：引用最近一次执行的后台进程PID，即运行于后台的最后一个作业的PID</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$#</span></code>：引用函数所有位置参数的个数</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$*</span></code>：引用函数所有位置参数的整体，即所有参数被当做一个字符串</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$&#64;</span></code>：引用函数所有单个位置参数，即每个参数都是一个独立的字符串</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">执行函数体：在函数体执行时，需要注意的是</p>
+<blockquote>
+<div><ul>
+<li><p class="first">函数内部引用变量的查找次序：<code class="docutils literal"><span class="pre">内层函数自己的变量&gt;外层函数的变量&gt;主程序的变量&gt;bash内置的环境变量</span></code></p>
+</li>
+<li><p class="first">函数内部引用变量的作用域</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="../3-variable/index.html#locall">本地变量</a>：函数体引用本地变量时，重新赋值会覆盖原来的值，如果不想覆盖值，可以使用<code class="docutils literal"><span class="pre">local</span></code>进行修饰</li>
+<li><a class="reference external" href="../3-variable/index.html#sidel">局部变量</a>：函数体引用局部变量时，函数退出，将会被撤销</li>
+<li><a class="reference external" href="../3-variable/index.html#envl">环境变量</a>：函数体引用环境变量时，重新赋值会覆盖原来的值，如果不想覆盖值，可以使用<code class="docutils literal"><span class="pre">local</span></code>进行修饰</li>
+<li><a class="reference external" href="../3-variable/index.html#positionl">位置变量</a>：函数体引用位置变量表示引用传递给函数的参数</li>
+<li><a class="reference external" href="../3-variable/index.html#speciall">特殊变量</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">函数返回：函数返回值可分为两类</p>
+<blockquote>
+<div><ul>
+<li><p class="first">执行结果返回值：正常的执行结果返回值有以下几种</p>
+<blockquote>
+<div><ul class="simple">
+<li>函数中的打印语句：如<code class="docutils literal"><span class="pre">echo</span></code>、<code class="docutils literal"><span class="pre">print</span></code>等</li>
+<li>最后一条命令语句的执行结果值</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">执行状态返回值：执行状态返回值主要有以下几种</p>
+<blockquote>
+<div><ul class="simple">
+<li>使用<code class="docutils literal"><span class="pre">return</span></code>语句自定义返回值，即return n，n表示函数的退出状态码，不给定状态码时默认状态码为0</li>
+<li>取决于函数体中最后一条命令语句的执行状态返回值</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>在shell中不仅可以调用本脚本文件中定义的函数，还可以调用其它脚本文件中定义的函数</p>
+<ul class="simple">
+<li>先使用<code class="docutils literal"><span class="pre">.</span> <span class="pre">/path/to/shellscript</span></code>或<code class="docutils literal"><span class="pre">source</span> <span class="pre">/path/to/shellscript</span></code>命令导入指定的脚本文件</li>
+<li>然后使用相应的函数名调用函数即可</li>
+</ul>
+</div>
+<div class="section" id="x02">
+<span id="funcexit"></span><h2>0x02 函数退出命令<a class="headerlink" href="#x02" title="永久链接至标题">¶</a></h2>
+<p>函数退出命令有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">return</span> <span class="pre">[n]</span></code>：可以在函数体内的任何地方使用，表示退出整个函数；数值n表示函数的退出状态码</li>
+<li><code class="docutils literal"><span class="pre">exit</span> <span class="pre">[n]</span></code>：可以在脚本的任何地方使用，表示退出整个脚本；数值n表示脚本的退出状态码</li>
+</ul>
+<p>此处需要注意的是：<code class="docutils literal"><span class="pre">return</span></code>并非只能用于<code class="docutils literal"><span class="pre">function内部</span></code></p>
+<ul class="simple">
+<li>如果<code class="docutils literal"><span class="pre">return</span></code>在<code class="docutils literal"><span class="pre">function之外</span></code>，但在<code class="docutils literal"><span class="pre">.</span></code>或者<code class="docutils literal"><span class="pre">source</span></code>命令的执行过程中，则直接停止该执行操作，并返回给定状态码n(如果未给定，则为0)</li>
+<li>如果<code class="docutils literal"><span class="pre">return</span></code>在<code class="docutils literal"><span class="pre">function之外</span></code>，且不在<code class="docutils literal"><span class="pre">source</span></code>或<code class="docutils literal"><span class="pre">.</span></code>的执行过程中，则这将是一个错误用法</li>
+</ul>
+<p>可能有些人不理解为什么不直接使用<code class="docutils literal"><span class="pre">exit</span></code>来替代这时候的<code class="docutils literal"><span class="pre">return</span></code>。下面给个例子就能清楚地区分它们</p>
+<p>先创建一个脚本文件<code class="docutils literal"><span class="pre">proxy.sh</span></code>，内容如下，用于根据情况设置代理的环境变量</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">proxy</span><span class="o">=</span><span class="s2">&quot;http://127.0.0.1:8118&quot;</span>
+<span class="k">function</span> exp_proxy<span class="o">()</span> <span class="o">{</span>
+        <span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="nv">$proxy</span>
+        <span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span><span class="nv">$proxy</span>
+        <span class="nb">export</span> <span class="nv">ftp_proxy</span><span class="o">=</span><span class="nv">$proxy</span>
+        <span class="nb">export</span> <span class="nv">no_proxy</span><span class="o">=</span>localhost
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="nv">$1</span> in
+        <span class="nb">set</span><span class="o">)</span> exp_proxy<span class="p">;;</span>
+        <span class="nb">unset</span><span class="o">)</span> <span class="nb">unset</span> http_proxy https_proxy ftp_proxy no_proxy<span class="p">;;</span>
+        *<span class="o">)</span> <span class="k">return</span> <span class="m">0</span>
+<span class="k">esac</span>
+</pre></div>
+</div>
+<p>首先我们来了解下<code class="docutils literal"><span class="pre">source</span></code>的特性：即<code class="docutils literal"><span class="pre">source</span></code>是在当前shell而非子shell执行指定脚本中的代码</p>
+<p>当进入bash</p>
+<ul class="simple">
+<li>需要设置环境变量时：使用<code class="docutils literal"><span class="pre">source</span> <span class="pre">proxy.sh</span> <span class="pre">set</span></code>即可</li>
+<li>需要取消环境变量时：使用<code class="docutils literal"><span class="pre">source</span> <span class="pre">proxy.sh</span> <span class="pre">unset</span></code>即可</li>
+</ul>
+<p>此时如果不清楚该脚本的用途或者一时手快直接输入<code class="docutils literal"><span class="pre">source</span> <span class="pre">proxy.sh</span></code>，就可以区分<code class="docutils literal"><span class="pre">exit</span></code>和<code class="docutils literal"><span class="pre">return</span></code></p>
+<ul class="simple">
+<li>如果上述脚本是<code class="docutils literal"><span class="pre">return</span> <span class="pre">0</span></code>，那么表示直接退出脚本而已，不会退出bash</li>
+<li>如果上述脚本是<code class="docutils literal"><span class="pre">exit</span> <span class="pre">0</span></code>，则表示退出当前bash，因为<code class="docutils literal"><span class="pre">source</span></code>是在当前shell而非子shell执行指定脚本中的代码</li>
+</ul>
+<p>可能你想象不出在source执行中的return有何用处：从source来考虑，它除了用在某些脚本中加载其他环境，更主要的是在bash环境初始化脚本中使用，例如<code class="docutils literal"><span class="pre">/etc/profile</span></code>、<code class="docutils literal"><span class="pre">~/.bashrc</span></code>等，如果你在<code class="docutils literal"><span class="pre">/etc/profile</span></code>中用<code class="docutils literal"><span class="pre">exit</span></code>来替代<code class="docutils literal"><span class="pre">function外面</span></code>的<code class="docutils literal"><span class="pre">return</span></code>，那么永远也登陆不上<code class="docutils literal"><span class="pre">bash</span></code></p>
+</div>
+<div class="section" id="x03">
+<span id="funccode"></span><h2>0x03 示例代码<a class="headerlink" href="#x03" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>随机生成密码</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+genpasswd<span class="o">(){</span>
+        <span class="nb">local</span> <span class="nv">l</span><span class="o">=</span><span class="nv">$1</span>
+        <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$l</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>  <span class="o">]&amp;&amp;</span> <span class="nv">l</span><span class="o">=</span><span class="m">20</span>
+        tr -dc A-Za-z0-9_&lt;/dev/urandom <span class="p">|</span> head -c <span class="si">${</span><span class="nv">l</span><span class="si">}</span> <span class="p">|</span> xargs
+<span class="o">}</span>
+
+genpasswd <span class="nv">$1</span>   <span class="c1"># 将脚本传入的位置参数传递给函数，表示生成的随机密码的位数</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">写一个脚本，完成如下功能：</p>
+<blockquote>
+<div><ul>
+<li><p class="first">1、脚本使用格式：<code class="docutils literal"><span class="pre">mkscript.sh</span> <span class="pre">[-D|--description</span> <span class="pre">&quot;script</span> <span class="pre">description&quot;]</span> <span class="pre">[-A|--author</span> <span class="pre">&quot;script</span> <span class="pre">author&quot;]</span> <span class="pre">/path/to/somefile</span></code></p>
+</li>
+<li><p class="first">2、如果文件事先不存在，则创建；且前几行内容如下所示：</p>
+<blockquote>
+<div><ul class="simple">
+<li>#!/bin/bash</li>
+<li># Description: script description</li>
+<li># Author: script author</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">3、如果事先存在，但不空，且第一行不是<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>，则提示错误并退出；如果第一行是<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>，则使用vim打开脚本；把光标直接定位至最后一行</p>
+</li>
+<li><p class="first">4、打开脚本后关闭时判断脚本是否有语法错误；如果有，提示输入y继续编辑，输入n放弃并退出；如果没有，则给此文件以执行权限</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">read</span> -p <span class="s2">&quot;Enter a file: &quot;</span> filename
+<span class="nb">declare</span> authname
+<span class="nb">declare</span> descr
+
+options<span class="o">(){</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$#</span> -ge <span class="m">0</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+        <span class="k">case</span> <span class="nv">$1</span> in
+    -D<span class="p">|</span>--description<span class="o">)</span>
+        <span class="nv">authname</span><span class="o">=</span><span class="nv">$4</span>
+        <span class="nv">descr</span><span class="o">=</span><span class="nv">$2</span>
+        <span class="p">;;</span>
+    -A<span class="p">|</span>--author<span class="o">)</span>
+        <span class="nv">descr</span><span class="o">=</span><span class="nv">$4</span>
+        <span class="nv">authname</span><span class="o">=</span><span class="nv">$2</span>
+        <span class="p">;;</span>
+        <span class="k">esac</span>
+<span class="k">fi</span>
+<span class="o">}</span>
+
+command<span class="o">(){</span>
+<span class="k">if</span>  bash -n <span class="nv">$filename</span> <span class="p">&amp;</span>&gt; /dev/null<span class="p">;</span><span class="k">then</span>
+        chmod +x <span class="nv">$filename</span>
+<span class="k">else</span>
+    <span class="k">while</span> true<span class="p">;</span><span class="k">do</span>
+        <span class="nb">read</span> -p <span class="s2">&quot;[y|n]:&quot;</span> option
+        <span class="k">case</span> <span class="nv">$option</span> in
+        y<span class="o">)</span>
+                vim + <span class="nv">$filename</span>
+                <span class="p">;;</span>
+        n<span class="o">)</span>
+                <span class="nb">exit</span> <span class="m">8</span>
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        <span class="k">done</span>
+<span class="k">fi</span>
+<span class="nb">exit</span> <span class="m">6</span>
+<span class="o">}</span>
+
+oneline<span class="o">(){</span>
+<span class="k">if</span> <span class="o">[[</span> -f <span class="nv">$filename</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span>head -1 <span class="nv">$filename</span><span class="sb">`</span> <span class="o">==</span> <span class="s2">&quot;#!/bin/bash&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        vim + <span class="nv">$filename</span>
+        <span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;wrong...&quot;</span>
+        <span class="nb">exit</span> <span class="m">4</span>
+        <span class="k">fi</span>
+<span class="k">else</span>
+        touch <span class="nv">$filename</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> -e <span class="s2">&quot;#!/bin/bash\n# Description: </span><span class="nv">$descr</span><span class="s2">\n# Author: </span><span class="nv">$authname</span><span class="s2">&quot;</span> &gt; <span class="nv">$filename</span>
+        vim + <span class="nv">$filename</span>
+<span class="k">fi</span>
+<span class="nb">command</span>
+<span class="o">}</span>
+
+options <span class="nv">$*</span>
+oneline
+</pre></div>
+</div>
+<ul>
+<li><p class="first">写一个脚本，完成如下功能：</p>
+<blockquote>
+<div><ul class="simple">
+<li>1、提示用户输入一个可执行命令</li>
+<li>2、获取这个命令所依赖的所有库文件(使用ldd命令)</li>
+<li>3、复制命令至<code class="docutils literal"><span class="pre">/mnt/sysroot/</span></code>对应的目录中；如果复制的是<code class="docutils literal"><span class="pre">cat</span></code>命令，其可执行程序的路径是<code class="docutils literal"><span class="pre">/bin/cat</span></code>，那么就要将<code class="docutils literal"><span class="pre">/bin/cat</span></code>复制到<code class="docutils literal"><span class="pre">/mnt/sysroot/bin/</span></code>目录中，如果复制的是<code class="docutils literal"><span class="pre">useradd</span></code>命令，而<code class="docutils literal"><span class="pre">useradd</span></code>的可执行文件路径为<code class="docutils literal"><span class="pre">/usr/sbin/useradd</span></code>，那么就要将其复制到<code class="docutils literal"><span class="pre">/mnt/sysroot/usr/sbin/</span></code>目录中</li>
+<li>4、复制各库文件至<code class="docutils literal"><span class="pre">/mnt/sysroot/</span></code>对应的目录中</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+options<span class="o">(){</span>
+        <span class="k">for</span> i in <span class="nv">$*</span><span class="p">;</span><span class="k">do</span>
+                <span class="nv">dirname</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$i</span><span class="sb">`</span>
+                <span class="o">[</span> -d /mnt/sysroot<span class="nv">$dirname</span> <span class="o">]</span> <span class="o">||</span> mkdir -p /mnt/sysroot<span class="nv">$dirname</span>
+                <span class="o">[</span> -f /mnt/sysroot<span class="nv">$i</span> <span class="o">]||</span>cp <span class="nv">$i</span> /mnt/sysroot<span class="nv">$dirname</span>/
+        <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="k">while</span> true<span class="p">;</span><span class="k">do</span>
+        <span class="nb">read</span> -p <span class="s2">&quot;Enter a command : &quot;</span> pidname
+        <span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$pidname</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;quit&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;Quit &quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span> <span class="m">0</span>
+        <span class="nv">bash</span><span class="o">=</span><span class="sb">`</span>which --skip-alias <span class="nv">$pidname</span><span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[[</span> -x <span class="nv">$bash</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+                options <span class="sb">`</span>/usr/bin/ldd <span class="nv">$bash</span> <span class="p">|</span>grep -o <span class="s2">&quot;/[^[:space:]]\{1,\}&quot;</span><span class="sb">`</span>
+                options <span class="nv">$bash</span>
+        <span class="k">else</span>
+                <span class="nb">echo</span> <span class="s2">&quot;PLZ a command!&quot;</span>
+        <span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="c1"># 说明</span>
+<span class="c1"># 将bash命令的相关bin文件和lib文件复制到/mnt/sysroot/目录中后</span>
+<span class="c1"># 使用chroot命令可切换根目录，切换到/mnt/sysroot/后可当做bash执行复制到该处的命令，作为bash中的bash</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>写一个脚本，用来判定172.16.0.0网络内有哪些主机在线，在线的用绿色显示，不在线的用红色显示</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+Cnetping<span class="o">(){</span>
+        <span class="k">for</span> i in <span class="o">{</span><span class="m">1</span>..254<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+        ping -c <span class="m">1</span> -w <span class="m">1</span> <span class="nv">$1</span>.<span class="nv">$i</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+                <span class="nb">echo</span> -e -n <span class="s2">&quot;\033[32mping 172.16.</span><span class="nv">$i</span><span class="s2">.</span><span class="nv">$j</span><span class="s2"> ke da !\033[0m\n&quot;</span>
+        <span class="k">else</span>
+                <span class="nb">echo</span> -e -n <span class="s2">&quot;\033[31mping 172.16.</span><span class="nv">$i</span><span class="s2">.</span><span class="nv">$j</span><span class="s2"> bu ke da !\033[0m \n&quot;</span>
+        <span class="k">fi</span>
+        <span class="k">done</span>
+<span class="o">}</span>
+
+Bnetping<span class="o">(){</span>
+        <span class="k">for</span> j in <span class="o">{</span><span class="m">0</span>..255<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+                Cnetping <span class="nv">$1</span>.<span class="nv">$j</span>
+        <span class="k">done</span>
+<span class="o">}</span>
+
+Bnetping <span class="m">172</span>.16
+</pre></div>
+</div>
+<ul class="simple">
+<li>写一个脚本，用来判定随意输入的ip地址所在网段内有哪些主机在线，在线的用绿色显示，不在线的用红色显示</li>
+</ul>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+Cnetping<span class="o">(){</span>
+        <span class="k">for</span> i in <span class="o">{</span><span class="m">1</span>..254<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+        ping -c <span class="m">1</span> -w <span class="m">1</span> <span class="nv">$1</span>.<span class="nv">$i</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+                <span class="nb">echo</span> -e -n <span class="s2">&quot;\033[32mping 172.16.</span><span class="nv">$i</span><span class="s2">.</span><span class="nv">$j</span><span class="s2"> ke da !\033[0m\n&quot;</span>
+        <span class="k">else</span>
+                <span class="nb">echo</span> -e -n <span class="s2">&quot;\033[31mping 172.16.</span><span class="nv">$i</span><span class="s2">.</span><span class="nv">$j</span><span class="s2"> bu ke da !\033[0m \n&quot;</span>
+        <span class="k">fi</span>
+        <span class="k">done</span>
+<span class="o">}</span>
+
+Bnetping<span class="o">(){</span>
+        <span class="k">for</span> j in <span class="o">{</span><span class="m">0</span>..255<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+                Cnetping <span class="nv">$1</span>.<span class="nv">$j</span>
+        <span class="k">done</span>
+<span class="o">}</span>
+
+Anetping<span class="o">(){</span>
+        <span class="k">for</span> m in <span class="o">{</span><span class="m">0</span>.255<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+                Bnetping <span class="nv">$1</span>.<span class="nv">$m</span>
+        <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="nv">netType</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$1</span> <span class="p">|</span> cut -d<span class="s1">&#39;.&#39;</span> -f1<span class="sb">`</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$netType</span> -gt <span class="m">0</span> -a <span class="nv">$netType</span> -le <span class="m">126</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        Anetping <span class="nv">$1</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$netType</span> -ge <span class="m">128</span> -a <span class="nv">$netType</span> -le <span class="m">191</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        Bnetping <span class="nv">$1</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$netType</span> -ge <span class="m">192</span> -a <span class="nv">$netType</span> -le <span class="m">223</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        Cnetping <span class="nv">$1</span>
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Wrong&quot;</span>
+        <span class="nb">exit</span> <span class="m">3</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../7-pieceofkn/index.html" class="btn btn-neutral float-right" title="知识碎片" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../5-control/index.html" class="btn btn-neutral" title="控制流程语句" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
