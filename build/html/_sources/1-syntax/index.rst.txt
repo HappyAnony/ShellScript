@@ -1,12 +1,11 @@
 语法基础
 =================
 
-
+shell语法基础有
 
 .. toctree::
    :titlesonly:
    :glob:
-
 
    1-scriptstruct/index
    2-datatype/index
