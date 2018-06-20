@@ -1,0 +1,1058 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>数据类型 &mdash; shell脚本编程 1.0.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="shell脚本编程 1.0.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="变量" href="../3-variable/index.html"/>
+        <link rel="prev" title="脚本结构" href="../1-scriptstruct/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> shell脚本编程
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-variable/index.html">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-functions/index.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shell脚本编程</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>数据类型</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/2-datatype/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>数据类型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>数据类型的本质：固定内存大小的别名</p>
+<p>数据类型的作用：</p>
+<ul class="simple">
+<li>确定对应变量分配的内存大小</li>
+<li>确定对应变量所能支持的运算或操作</li>
+</ul>
+<p>shell脚本是弱类型解释型的语言，在脚本运行时由解释器进行解释变量在什么时候是什么数据类型</p>
+<p>在bash中，变量默认都是字符串类型，都是以字符串方式存储，所以在本章主要是介绍各数据类型变量所支持的运算或操作</p>
+<p>虽说变量默认都是字符串类型，但是按照其使用场景可将数据类型分为以下几种类型：</p>
+<ul class="simple">
+<li><a class="reference external" href="#valuesl">数值型</a></li>
+<li><a class="reference external" href="#stringsl">字符串型</a></li>
+<li><a class="reference external" href="#arraysl">数组型</a></li>
+<li><a class="reference external" href="#listsl">列表型</a></li>
+</ul>
+<div class="section" id="x00">
+<span id="valuesl"></span><h2>0x00 数值型<a class="headerlink" href="#x00" title="永久链接至标题">¶</a></h2>
+<p>首先我们来声明定义一个数值型变量：<code class="docutils literal"><span class="pre">declare</span> <span class="pre">-i</span> <span class="pre">Var_Name</span></code></p>
+<ul class="simple">
+<li>虽说声明是一个数值型变量，但是存储依然是按照字符串的形式进行存储</li>
+<li>该种方式声明，变量默认是本地全局变量，可以通过<code class="docutils literal"><span class="pre">local</span> <span class="pre">Var_Name</span></code>关键字将变量修改为局部变量，可以通过<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name</span></code>关键字将变量导出为环境变量</li>
+<li>除了使用<code class="docutils literal"><span class="pre">declare</span> <span class="pre">-i</span></code>显式声明变量数据类型为数值型，还可以像<code class="docutils literal"><span class="pre">Var_Name=1</span></code>由解释器动态执行隐式声明该变量数据类型为数值型</li>
+</ul>
+<p>数值型变量一般支持以下运算操作</p>
+<ul class="simple">
+<li><a class="reference external" href="#arithmeticl">算术运算</a></li>
+<li><a class="reference external" href="#logicl">比较运算</a></li>
+<li><a class="reference external" href="#arrayindex">数组索引</a></li>
+</ul>
+</div>
+<div class="section" id="x0000">
+<span id="arithmeticl"></span><h2>0x0000 算术运算<a class="headerlink" href="#x0000" title="永久链接至标题">¶</a></h2>
+<p>算术运算代码示例如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">declare</span> -i <span class="nv">val</span><span class="o">=</span><span class="m">5</span>   <span class="c1"># 显式声明数值变量</span>
+<span class="nv">num</span><span class="o">=</span><span class="m">2</span>              <span class="c1"># 隐式声明数值变量</span>
+
+<span class="c1"># 使用[]运算符执行算术表达式$val+$num</span>
+<span class="c1"># 使用$引用表达式执行结果</span>
+<span class="nb">echo</span> <span class="s2">&quot;val+num=</span>$<span class="s2">[</span><span class="nv">$val</span><span class="s2">+</span><span class="nv">$num</span><span class="s2">]&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;val++: </span>$<span class="s2">[val++]&quot;</span>  <span class="c1"># 这里不需要加$，不是引用变量的值，而是修改变量的值</span>
+<span class="nb">echo</span> <span class="s2">&quot;val--: </span>$<span class="s2">[val--]&quot;</span>  <span class="c1"># 这里不需要加$，不是引用变量的值，而是修改变量的值</span>
+<span class="nb">echo</span> <span class="s2">&quot;++val: </span>$<span class="s2">[++val]&quot;</span>  <span class="c1"># 这里不需要加$，不是引用变量的值，而是修改变量的值</span>
+<span class="nb">echo</span> <span class="s2">&quot;--val: </span>$<span class="s2">[--val]&quot;</span>  <span class="c1"># 这里不需要加$，不是引用变量的值，而是修改变量的值</span>
+
+<span class="c1"># 使用(())运算符执行算术表达式</span>
+<span class="c1"># 使用$引用表达式执行结果</span>
+<span class="nb">echo</span> <span class="s2">&quot;val-num=</span><span class="k">$((</span><span class="nv">$val</span><span class="o">-</span><span class="nv">$num</span><span class="k">))</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;val%num=</span><span class="k">$((</span><span class="nv">$val</span><span class="o">%</span><span class="nv">$num</span><span class="k">))</span><span class="s2">&quot;</span>
+
+<span class="c1"># 使用let关键字执行算术表达式$val*$num</span>
+<span class="c1"># 使用=运算符将执行结果赋值给变量</span>
+<span class="nb">let</span> <span class="nv">ret</span><span class="o">=</span><span class="nv">$val</span>*<span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s2">&quot;var*num=</span><span class="nv">$ret</span><span class="s2">&quot;</span>
+
+<span class="c1"># 使用expr命令执行算术表达式$val/$num但是$val / $num之间需要用空格隔开</span>
+<span class="c1"># 此时该表达式中的各个部分将作为参数传递给expr命令，最后使用``运算符引用命令的执行结果</span>
+<span class="c1"># 使用=运算符将命令引用结果赋值给变量</span>
+<span class="nv">ret</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$val</span> / <span class="nv">$num</span><span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">&quot;val/num=</span><span class="nv">$ret</span><span class="s2">&quot;</span>
+
+<span class="c1"># 使用let关键字执行算术表达式+=、-=、*=、/=、%=</span>
+<span class="nb">let</span> <span class="nv">val</span><span class="o">+=</span><span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s2">&quot;var+=num:</span><span class="nv">$val</span><span class="s2">&quot;</span>
+<span class="nb">let</span> val-<span class="o">=</span><span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s2">&quot;var-=num:</span><span class="nv">$val</span><span class="s2">&quot;</span>
+<span class="nb">let</span> val*<span class="o">=</span><span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s2">&quot;val*=num:</span><span class="nv">$val</span><span class="s2">&quot;</span>
+<span class="nb">let</span> val/<span class="o">=</span><span class="nv">$sum</span>         <span class="c1"># 貌似let不支持/=运算符</span>
+<span class="nb">echo</span> <span class="s2">&quot;val/=num:</span><span class="nv">$val</span><span class="s2">&quot;</span>
+<span class="nb">let</span> val%<span class="o">=</span><span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s2">&quot;val%=num:</span><span class="nv">$val</span><span class="s2">&quot;</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># val+num=7</span>
+<span class="c1"># val++: 5</span>
+<span class="c1"># val--: 6</span>
+<span class="c1"># ++val: 6</span>
+<span class="c1"># --val: 5</span>
+<span class="c1"># val-num=3</span>
+<span class="c1"># val%num=1</span>
+<span class="c1"># var*num=10</span>
+<span class="c1"># val/num=2</span>
+<span class="c1"># var+=num:7</span>
+<span class="c1"># var-=num:5</span>
+<span class="c1"># val*=num:10</span>
+<span class="c1"># ./test.sh: line 19: let: val/=: syntax error: operand expected (error token is &quot;/=&quot;)</span>
+<span class="c1"># val/=num:10</span>
+<span class="c1"># val%=num:0</span>
+</pre></div>
+</div>
+<p>由上述示例可知：数值类型变量支持的算术运算以及对应的算术运算符如下</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">加</span></code>：<code class="docutils literal"><span class="pre">+</span></code>、<code class="docutils literal"><span class="pre">+=</span></code>、<code class="docutils literal"><span class="pre">++</span></code></li>
+<li><code class="docutils literal"><span class="pre">减</span></code>：<code class="docutils literal"><span class="pre">-</span></code>、<code class="docutils literal"><span class="pre">-=</span></code>、<code class="docutils literal"><span class="pre">--</span></code></li>
+<li><code class="docutils literal"><span class="pre">乘</span></code>：<code class="docutils literal"><span class="pre">*</span></code>、<code class="docutils literal"><span class="pre">*=</span></code></li>
+<li><code class="docutils literal"><span class="pre">除</span></code>：<code class="docutils literal"><span class="pre">/</span></code></li>
+<li><code class="docutils literal"><span class="pre">取余</span></code> ：<code class="docutils literal"><span class="pre">%</span></code>、<code class="docutils literal"><span class="pre">%=</span></code></li>
+</ul>
+</div>
+<div class="section" id="x0001">
+<span id="logicl"></span><h2>0x0001 比较运算<a class="headerlink" href="#x0001" title="永久链接至标题">¶</a></h2>
+<p>比较运算有以下几种类型</p>
+<ul class="simple">
+<li><a class="reference external" href="#logicltestl">用于条件测试</a></li>
+<li><a class="reference external" href="#logiclforl">用于for循环</a></li>
+</ul>
+<p id="logicltestl">用于条件测试的示例代码如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">declare</span> -i <span class="nv">val</span><span class="o">=</span><span class="m">5</span>   <span class="c1"># 显式声明数值变量</span>
+<span class="nv">num</span><span class="o">=</span><span class="m">2</span>              <span class="c1"># 隐式声明数值变量</span>
+
+<span class="c1"># -eq：判断val变量的值是否等于5</span>
+<span class="c1"># []运算符用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="c1"># []运算符和条件测试表达式之间前后有空格</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$val</span> -eq <span class="m">5</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of val variable is 5&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># -ne：判断num变量的值是否不等于5</span>
+<span class="c1"># [[]]运算符用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="c1"># [[]]运算符和条件测试表达式之间前后有空格</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$num</span> -ne <span class="m">5</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of num variable is not 5&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># -le：判断num变量的值是否小于或等于val变量的值</span>
+<span class="c1"># test命令关键字用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="k">if</span> <span class="nb">test</span> <span class="nv">$num</span> -le <span class="nv">$val</span> <span class="p">;</span><span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of num variable is lower or equal than val variable&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># -ge：判断val变量的值是否大于或等于num变量的值</span>
+<span class="c1"># [[]]运算符用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="c1"># [[]]运算符和条件测试表达式之间前后有空格</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$val</span> -ge <span class="nv">$num</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of val variable is growth or equal than num variable&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># -gt：判断val变量的值是否大于5</span>
+<span class="c1"># []运算符用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="c1"># []运算符和条件测试表达式之间前后有空格</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$val</span> -gt <span class="m">2</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of val variable is growth than 2&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># -lt：判断num变量的值是否小于5</span>
+<span class="c1"># [[]]运算符用来执行条件测试表达式，其执行结果要么为真，要么为假</span>
+<span class="c1"># [[]]运算符和条件测试表达式之间前后有空格</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$num</span> -lt <span class="m">5</span> <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;the value of num variable is lower than 5&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># the value of val variable is 5</span>
+<span class="c1"># the value of num variable is not 5</span>
+<span class="c1"># the value of num variable is lower or equal than val variable</span>
+<span class="c1"># the value of val variable is growth or equal than num variable</span>
+<span class="c1"># the value of val variable is growth than 2</span>
+<span class="c1"># the value of num variable is lower than 5</span>
+</pre></div>
+</div>
+<p>由上述示例可知：数值类型变量用于条件测试时支持的比较运算以及对应的运算符如下</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">等于</span></code>：<code class="docutils literal"><span class="pre">-eq</span></code></li>
+<li><code class="docutils literal"><span class="pre">不等于</span></code>：<code class="docutils literal"><span class="pre">-ne</span></code></li>
+<li><code class="docutils literal"><span class="pre">小于等于</span></code>：<code class="docutils literal"><span class="pre">-le</span></code></li>
+<li><code class="docutils literal"><span class="pre">大于等于</span></code>：<code class="docutils literal"><span class="pre">-ge</span></code></li>
+<li><code class="docutils literal"><span class="pre">大于</span></code>：<code class="docutils literal"><span class="pre">-gt</span></code></li>
+<li><code class="docutils literal"><span class="pre">小于</span></code>：<code class="docutils literal"><span class="pre">-lt</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑与</span></code>：<code class="docutils literal"><span class="pre">&amp;&amp;</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑非</span></code>：<code class="docutils literal"><span class="pre">!</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑或</span></code>：<code class="docutils literal"><span class="pre">||</span></code></li>
+</ul>
+<p id="logiclforl">用于用于for循环的示例代码如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># ==判断变量i的值是否等于1</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> <span class="nv">i</span><span class="o">==</span><span class="m">1</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+
+<span class="c1"># !=判断变量i的值是否不等于3</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i!<span class="o">=</span><span class="m">3</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+
+<span class="c1"># &lt;=判断变量i的值是否小于等于4</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i&lt;<span class="o">=</span><span class="m">4</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+
+<span class="c1"># &gt;=判断变量i的值是否大于等于1</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">5</span><span class="p">;</span> i&gt;<span class="o">=</span><span class="m">1</span><span class="p">;</span> i--<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+
+<span class="c1"># &lt;判断变量i的值是否小于7</span>
+<span class="c1"># &gt;判断变量i的值是否大于0</span>
+<span class="c1"># &amp;&amp;表示逻辑与</span>
+<span class="c1"># ||表示逻辑或</span>
+<span class="c1"># !表示逻辑非</span>
+<span class="c1"># 非的优先级大于与，与的优先级大于或</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i&gt;0 <span class="o">&amp;&amp;</span> i&lt;<span class="m">7</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>由上述示例可知：数值类型变量用于for循环时支持的比较运算以及对应的运算符如下</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">等于</span></code>：<code class="docutils literal"><span class="pre">==</span></code></li>
+<li><code class="docutils literal"><span class="pre">不等于</span></code>：<code class="docutils literal"><span class="pre">!=</span></code></li>
+<li><code class="docutils literal"><span class="pre">小于等于</span></code>：<code class="docutils literal"><span class="pre">&lt;=</span></code></li>
+<li><code class="docutils literal"><span class="pre">大于等于</span></code>：<code class="docutils literal"><span class="pre">&gt;=</span></code></li>
+<li><code class="docutils literal"><span class="pre">大于</span></code>：<code class="docutils literal"><span class="pre">&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">小于</span></code>：<code class="docutils literal"><span class="pre">&lt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑与</span></code>：<code class="docutils literal"><span class="pre">&amp;&amp;</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑非</span></code>：<code class="docutils literal"><span class="pre">!</span></code></li>
+<li><code class="docutils literal"><span class="pre">逻辑或</span></code>：<code class="docutils literal"><span class="pre">||</span></code></li>
+</ul>
+</div>
+<div class="section" id="x0002">
+<span id="arrayindex"></span><h2>0x0002 数组索引<a class="headerlink" href="#x0002" title="永久链接至标题">¶</a></h2>
+<p>数组类型变量当做数组索引可参考<a class="reference external" href="#arraysl">数组型变量</a>一节</p>
+</div>
+<div class="section" id="x01">
+<span id="stringsl"></span><h2>0x01 字符串型<a class="headerlink" href="#x01" title="永久链接至标题">¶</a></h2>
+<p>首先我们来声明定义一个字符串型变量：<code class="docutils literal"><span class="pre">Var_Name=&quot;anony&quot;</span></code></p>
+<ul class="simple">
+<li>在bash中，变量默认都是字符串类型，也都是以字符串方式存储，所以字符串可以不需要使用<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>，除非特殊声明，否则都会解释成字符串</li>
+<li>该种方式声明，变量默认是本地全局变量，可以通过<code class="docutils literal"><span class="pre">local</span> <span class="pre">Var_Name</span></code>关键字将变量修改为局部变量，可以通过<code class="docutils literal"><span class="pre">export</span> <span class="pre">Var_Name</span></code>关键字将变量导出为环境变量</li>
+<li>该种声明定义方式是由shell解释器动态执行隐式声明该变量数据类型为字符串型</li>
+</ul>
+<p>字符串型变量一般支持以下运算操作</p>
+<ul>
+<li><p class="first">返回字符串长度：<code class="docutils literal"><span class="pre">${#Var_Name}</span></code>(长度包括空白字符)</p>
+</li>
+<li><p class="first">字符串消除</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">${var#*word}</span></code>：查找<code class="docutils literal"><span class="pre">var</span></code>中自左而右第一个被<code class="docutils literal"><span class="pre">word</span></code>匹配到的串，并将此串及向左的所有内容都删除；此处为非贪婪匹配</li>
+<li><code class="docutils literal"><span class="pre">${var##*word}</span></code>：查找<code class="docutils literal"><span class="pre">var</span></code>中自左而右最后一个被<code class="docutils literal"><span class="pre">word</span></code>匹配到的串，并将此串及向左的所有内容都删除；此处为贪婪匹配</li>
+<li><code class="docutils literal"><span class="pre">${var%word*}</span></code>：查找<code class="docutils literal"><span class="pre">var</span></code>中自右而左第一个被<code class="docutils literal"><span class="pre">word</span></code>匹配到的串，并将此串及向右的所有内容都删除；此处为非贪婪匹配</li>
+<li><code class="docutils literal"><span class="pre">${var%%word*}</span></code>：查找<code class="docutils literal"><span class="pre">var</span></code>中自右而左最后一个被<code class="docutils literal"><span class="pre">word</span></code>匹配到的串，并将此串及向右的所有内容都删除；此处为贪婪匹配</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">字符串提取</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">${var:offset}</span></code>：自左向右偏移<code class="docutils literal"><span class="pre">offset</span></code>个字符，取余下的字串；例如：<code class="docutils literal"><span class="pre">name=jerry，${name:2}结果为rry</span></code></li>
+<li><code class="docutils literal"><span class="pre">${var:offset:length}</span></code>：自左向右偏移<code class="docutils literal"><span class="pre">offset</span></code>个字符，取余下的<code class="docutils literal"><span class="pre">length</span></code>个字符长度的字串。例如：``name=’hello world’ ${name:2:5}结果为llo w``</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">字符串替换</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">${var/Pattern/Replaceplacement}</span></code>：以<code class="docutils literal"><span class="pre">Pattern</span></code>为模式匹配<code class="docutils literal"><span class="pre">var</span></code>中的字串，将第一次匹配到的替换为<code class="docutils literal"><span class="pre">Replaceplacement</span></code>；此处为非贪婪匹配，<code class="docutils literal"><span class="pre">Pattern</span></code>模式可参考<a class="reference external" href="../../../../5-Wildcard/2-Regular/1-syntax/index.html">正则表达式</a></li>
+<li><code class="docutils literal"><span class="pre">${var//Pattern/Replaceplacement}</span></code>：以<code class="docutils literal"><span class="pre">Pattern</span></code>为模式匹配<code class="docutils literal"><span class="pre">var</span></code>中的字串，将全部匹配到的替换为<code class="docutils literal"><span class="pre">Replaceplacement</span></code>；此处为贪婪匹配，<code class="docutils literal"><span class="pre">Pattern</span></code>模式可参考<a class="reference external" href="../../../../5-Wildcard/2-Regular/1-syntax/index.html">正则表达式</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>代码示例如下：</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&quot;PATH variable is </span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of PATH variable is </span><span class="si">${#</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="nv">file_name</span><span class="o">=</span><span class="s2">&quot;linux.test.md&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">%%.*</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">%.*</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">##*.</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">#*.</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file_name</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="nv">test_str</span><span class="o">=</span><span class="s2">&quot;/usr/bin:/root/bin:/usr/local/apache/bin:/usr/local/mysql:/usr/local/apache/bin&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">test_str</span><span class="p">/:</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">local</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span><span class="s2">&quot;</span>   <span class="c1"># 此处需要使用\对/进行转义，替换值为空表示删除前面匹配到的内容</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">test_str</span><span class="p">//:</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">local</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span><span class="s2">&quot;</span>  <span class="c1"># 此处需要使用\对/进行转义，替换值为空表示删除前面匹配到的内容</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># PATH variable is /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span>
+<span class="c1"># the length of PATH variable is 59</span>
+<span class="c1"># linux</span>
+<span class="c1"># linux.test</span>
+<span class="c1"># md</span>
+<span class="c1"># test.md</span>
+<span class="c1"># linux</span>
+<span class="c1"># nux.test.md</span>
+<span class="c1"># /usr/bin:/root/bin:/usr/local/mysql:/usr/local/apache/bin</span>
+<span class="c1"># /usr/bin:/root/bin:/usr/local/mysql</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x02">
+<span id="arraysl"></span><h2>0x02 数组型<a class="headerlink" href="#x02" title="永久链接至标题">¶</a></h2>
+<p>数组是一种数据结构，也可以叫做数据序列，它是一段连续的内容空间，保存了连续的多个数据(数据类型可以不相同)，可以使用数组index索引来访问操作数组元素</p>
+<p>根据数组index索引的不同可将数组分为</p>
+<ul class="simple">
+<li><a class="reference external" href="#regulararray">普通数组</a>：数组index索引为整型数</li>
+<li><a class="reference external" href="#associaearray">关联数组</a>：数组index索引为字符串</li>
+</ul>
+<div class="section" id="x0200">
+<span id="regulararray"></span><h3>0x0200 普通数组<a class="headerlink" href="#x0200" title="永久链接至标题">¶</a></h3>
+<p>普通数组也可以称为整型索引数组，它的声明定义方式有以下几种</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 使用declare -a显式声明变量数据类型为整型索引数组型</span>
+<span class="c1"># 数组中各元素间使用空白字符分隔</span>
+<span class="c1"># 字符串类型的元素使用引号</span>
+<span class="nb">declare</span> -a <span class="nv">array1</span><span class="o">=(</span><span class="m">1</span> <span class="s1">&#39;b&#39;</span> <span class="m">3</span> <span class="s1">&#39;a&#39;</span><span class="o">)</span>
+<span class="c1"># 依次引用数组的第一、二、三、四个元素</span>
+<span class="c1"># 不加下标时默认引用第一个元素</span>
+<span class="c1"># 引用时必须加上{}，否则$array1[0]的值为1[0]</span>
+<span class="nb">echo</span> <span class="s2">&quot;the first element of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the second element of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the third element of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[2]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the fourth element of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[3]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看数组所有元素</span>
+<span class="nb">echo</span> <span class="s2">&quot;all elements of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;all elements of array1 is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 由解释器动态解释变量数据类型为整型索引数组型</span>
+<span class="c1"># 如果数组中各元素间使用逗号，则它们将作为一个整体，也就是数组索引0的值</span>
+<span class="nv">array2</span><span class="o">=(</span><span class="m">1</span>,<span class="s1">&#39;b&#39;</span>,3,<span class="s1">&#39;a&#39;</span><span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the first element of array2 is </span><span class="si">${</span><span class="nv">array2</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 由解释器动态解释变量数据类型为整型索引数组型</span>
+<span class="c1"># 数组元素使用自定义下标赋值</span>
+<span class="c1"># 以下数组定义中，第一个元素是1，第二个元素是&#39;b&#39;，第3个元素为空，第4个元素为&#39;a&#39;</span>
+<span class="nv">array3</span><span class="o">=(</span><span class="m">1</span> <span class="s1">&#39;b&#39;</span> <span class="o">[</span><span class="m">3</span><span class="o">]=</span><span class="s1">&#39;a&#39;</span><span class="o">)</span>
+<span class="c1"># 依次引用数组的第一、二、三、四个元素</span>
+<span class="c1"># 不加下标时默认引用第一个元素</span>
+<span class="nb">echo</span> <span class="s2">&quot;the first element of array3 is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the second element of array3 is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the third element of array3 is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[2]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the fourth element of array3 is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[3]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看数组中所有有效元素(不为空)的整型索引号</span>
+<span class="nb">echo</span> <span class="s2">&quot;the index of effective element is </span><span class="si">${</span><span class="p">!array3[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the index of effective element is </span><span class="si">${</span><span class="p">!array3[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看数组中的有效元素个数(只统计值不为空的元素)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the num of array3 is </span><span class="si">${#</span><span class="nv">array3</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the num of array3 is </span><span class="si">${#</span><span class="nv">array3</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 由解释器动态解释变量数据类型为整型索引数组型</span>
+<span class="c1"># 数组中每个元素被逐渐赋值</span>
+array4<span class="o">[</span><span class="m">0</span><span class="o">]=</span><span class="m">1</span>
+array4<span class="o">[</span><span class="m">1</span><span class="o">]=</span><span class="s1">&#39;bc&#39;</span>
+array4<span class="o">[</span><span class="m">2</span><span class="o">]=</span><span class="m">3</span>
+array4<span class="o">[</span><span class="m">3</span><span class="o">]=</span><span class="s1">&#39;a&#39;</span>
+<span class="c1"># 依次引用数组的第一、二、三、四个元素</span>
+<span class="c1"># 不加下标时默认引用第一个元素</span>
+<span class="nb">echo</span> <span class="s2">&quot;the first element of array4 is </span><span class="si">${</span><span class="nv">array4</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the second element of array4 is </span><span class="si">${</span><span class="nv">array4</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the third element of array4 is </span><span class="si">${</span><span class="nv">array4</span><span class="p">[2]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the fourth element of array4 is </span><span class="si">${</span><span class="nv">array4</span><span class="p">[3]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看第二个元素的字符长度</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of second element is </span><span class="si">${#</span><span class="nv">array4</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># the first element of array1 is 1</span>
+<span class="c1"># the second element of array1 is b</span>
+<span class="c1"># the third element of array1 is 3</span>
+<span class="c1"># the fourth element of array1 is a</span>
+<span class="c1"># all elements of array1 is 1 b 3 a</span>
+<span class="c1"># all elements of array1 is 1 b 3 a</span>
+<span class="c1"># the first element of array2 is 1,b,3,a</span>
+<span class="c1"># the first element of array3 is 1</span>
+<span class="c1"># the second element of array3 is b</span>
+<span class="c1"># the third element of array3 is</span>
+<span class="c1"># the fourth element of array3 is a</span>
+<span class="c1"># the index of effective element is 0 1 3</span>
+<span class="c1"># the index of effective element is 0 1 3</span>
+<span class="c1"># the num of array3 is 3</span>
+<span class="c1"># the num of array3 is 3</span>
+<span class="c1"># the first element of array4 is 1</span>
+<span class="c1"># the second element of array4 is bc</span>
+<span class="c1"># the third element of array4 is 3</span>
+<span class="c1"># the fourth element of array4 is a</span>
+<span class="c1"># the length of second element is 2</span>
+</pre></div>
+</div>
+<p>另外普通数组还支持以下运算操作</p>
+<ul>
+<li><p class="first">返回数组长度(即有效元素的个数，不包括空元素)</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">${#Array_Name[*]}</span></code></li>
+<li><code class="docutils literal"><span class="pre">${#Array_Name[&#64;]}</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素消除，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]#*word}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]##*word}</span></code>：自左而右查找<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中所有被匹配到的<code class="docutils literal"><span class="pre">word</span></code>匹配到的元素，并将所有匹配到的元素删除(并不会删除原数组中的元素)，最后返回剩余的数组元素</li>
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]%word*}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]%%word*}</span></code>：自右而左查找<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中所有被匹配到的<code class="docutils literal"><span class="pre">word</span></code>匹配到的元素，并将所有匹配到的元素删除(并不会删除原数组中的元素)，最后返回剩余的数组元素</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素提取，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]:offset}</span></code>：返回<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中索引为<code class="docutils literal"><span class="pre">offset</span></code>的数组元素以及后面所有元素；其中<code class="docutils literal"><span class="pre">offset</span></code>为整型数</li>
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]:offset:length}</span></code>：返回<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中索引为<code class="docutils literal"><span class="pre">offset</span></code>的数值元素以及后面<code class="docutils literal"><span class="pre">length-1</span></code>个元素；其中<code class="docutils literal"><span class="pre">offset</span></code>和<code class="docutils literal"><span class="pre">length</span></code>都为整型数</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素替换，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]/Pattern/Replaceplacement}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">Array_Name1=${Array_Name[*]//Pattern/Replaceplacement}</span></code>：以<code class="docutils literal"><span class="pre">Pattern</span></code>为模式匹配<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中的元素，将全部匹配到的替换为<code class="docutils literal"><span class="pre">Replaceplacement</span></code>(不会修改原数组中的元素)，并返回全部数组元素；<code class="docutils literal"><span class="pre">Pattern</span></code>模式可参考<a class="reference external" href="../../../../5-Wildcard/2-Regular/1-syntax/index.html">正则表达式</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>代码示例如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">array_test</span><span class="o">=(</span>/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin<span class="o">)</span>
+
+<span class="c1"># 返回数组长度(即有效元素的个数，不包括空元素)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array_test is </span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array_test is </span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素消除，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nv">array_test1</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]#*/usr/apache/bin</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test1:</span><span class="si">${</span><span class="nv">array_test1</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">array_test2</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]##*/usr/apache/bin</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test2:</span><span class="si">${</span><span class="nv">array_test2</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">array_test3</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]%/usr/apache/bin*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test3:</span><span class="si">${</span><span class="nv">array_test3</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">array_test4</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]%%/usr/apache/bin*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test4:</span><span class="si">${</span><span class="nv">array_test4</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素提取，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nv">array_test5</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]:</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test5:</span><span class="si">${</span><span class="nv">array_test5</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">array_test6</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]:</span><span class="nv">2</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test6:</span><span class="si">${</span><span class="nv">array_test6</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素替换，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nv">array_test7</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]/</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span>   <span class="c1"># 需要用\对/进行转义，替换值为空表示删除前面匹配到的</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test7:</span><span class="si">${</span><span class="nv">array_test7</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">array_test8</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]//</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span>  <span class="c1"># 需要用\对/进行转义，替换值为空表示删除前面匹配到的</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test8:</span><span class="si">${</span><span class="nv">array_test8</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># the length of array_test is 5</span>
+<span class="c1"># the length of array_test is 5</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test1:/usr/bin /root/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test2:/usr/bin /root/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test3:/usr/bin /root/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test4:/usr/bin /root/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test5:/usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># varray_test6:/usr/apache/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test7:/usr/bin /root/bin /usr/mysql</span>
+<span class="c1"># array_test:/usr/bin /root/bin /usr/apache/bin /usr/mysql /usr/apache/bin</span>
+<span class="c1"># array_test8:/usr/bin /root/bin /usr/mysql</span>
+</pre></div>
+</div>
+<p id="forlooppl">同时普通数组也可用于for循环遍历</p>
+<p>代码示例如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 获取家目录下文件列表，转换成普通数组</span>
+<span class="nv">array_test</span><span class="o">=(</span><span class="sb">`</span>ls ~<span class="sb">`</span><span class="o">)</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;----------------&quot;</span>
+
+<span class="c1"># 以数组元素值的方式直接遍历数组</span>
+<span class="k">for</span> i in <span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;----------------&quot;</span>
+
+<span class="c1"># 以数组index索引的方式遍历数组</span>
+<span class="k">for</span> i in <span class="si">${</span><span class="p">!array_test[*]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_test</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;----------------&quot;</span>
+
+<span class="c1"># 以数组元素个数的方式遍历数组</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">0</span><span class="p">;</span>i&lt;<span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="p">;</span>i++<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_test</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># anaconda-ks.cfg demo.sh test1.sh test.sh</span>
+<span class="c1"># ----------------</span>
+<span class="c1"># anaconda-ks.cfg</span>
+<span class="c1"># emo.sh</span>
+<span class="c1"># est1.sh</span>
+<span class="c1"># test.sh</span>
+<span class="c1"># ----------------</span>
+<span class="c1"># anaconda-ks.cfg</span>
+<span class="c1"># demo.sh</span>
+<span class="c1"># test1.sh</span>
+<span class="c1"># test.sh</span>
+<span class="c1"># ----------------</span>
+<span class="c1"># anaconda-ks.cfg</span>
+<span class="c1"># demo.sh</span>
+<span class="c1"># test1.sh</span>
+<span class="c1"># test.sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x0201">
+<span id="associaearray"></span><h3>0x0201 关联数组<a class="headerlink" href="#x0201" title="永久链接至标题">¶</a></h3>
+<p>关联数组也可以称为字符索引数组，它的声明定义方式有以下几种</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 声明定义字符索引数组时必须使用declare -A</span>
+<span class="c1"># 数组中各元素间使用空白字符分隔</span>
+<span class="nb">declare</span> -A <span class="nv">array1</span><span class="o">=([</span>name1<span class="o">]=</span>jack <span class="o">[</span>name2<span class="o">]=</span>anony<span class="o">)</span>
+<span class="c1"># 依次引用name1和name2对应的值</span>
+<span class="nb">echo</span> <span class="s2">&quot;the value of name1 element is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[name1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the value of name2 element is </span><span class="si">${</span><span class="nv">array1</span><span class="p">[name2]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 声明定义字符索引数组时必须使用declare -A</span>
+<span class="c1"># 如果数组中各元素间使用逗号，则它们将作为一个整体</span>
+<span class="nb">declare</span> -A <span class="nv">array2</span><span class="o">=([</span>name1<span class="o">]=</span>jack,<span class="o">[</span>name2<span class="o">]=</span>anony<span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the value of name1 element is </span><span class="si">${</span><span class="nv">array2</span><span class="p">[name1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看name1对应值的字符长度</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of name1 element is </span><span class="si">${#</span><span class="nv">array2</span><span class="p">[name1]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># 声明定义字符索引数组时必须使用declare -A</span>
+<span class="nb">declare</span> -A <span class="nv">array3</span><span class="o">=([</span>name1<span class="o">]=</span>jack <span class="o">[</span>name2<span class="o">]=</span>anony<span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the value of name1 element is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[name1]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the value of name2 element is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[name2]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 通过字符索引进行赋值</span>
+array3<span class="o">[</span>name3<span class="o">]=</span>zhangsan
+<span class="nb">echo</span> <span class="s2">&quot;the value of name3 element is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[name3]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 通过字符索引进行赋值</span>
+array3<span class="o">[</span>name5<span class="o">]=</span>lisi
+<span class="c1"># 查看数组所有元素</span>
+<span class="nb">echo</span> <span class="s2">&quot;the all effective element is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the all effective element is </span><span class="si">${</span><span class="nv">array3</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看数组中所有有效元素(不为空)的字符索引号，默认是对应值的排列顺序</span>
+<span class="nb">echo</span> <span class="s2">&quot;the index of all effective element is </span><span class="si">${</span><span class="p">!array3[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the index of all effective element is </span><span class="si">${</span><span class="p">!array3[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># 查看数组中的有效元素个数(只统计值不为空的元素)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array is </span><span class="si">${#</span><span class="nv">array3</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array is </span><span class="si">${#</span><span class="nv">array3</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># the value of name1 element is jack</span>
+<span class="c1"># the value of name2 element is anony</span>
+<span class="c1"># the value of name1 element is jack,[name2]=anony</span>
+<span class="c1"># the length of name1 element is 18</span>
+<span class="c1"># the value of name1 element is jack</span>
+<span class="c1"># the value of name2 element is anony</span>
+<span class="c1"># the value of name3 element is zhangsan</span>
+<span class="c1"># the all effective element is zhangsan anony jack lisi</span>
+<span class="c1"># the all effective element is zhangsan anony jack lisi</span>
+<span class="c1"># the index of all effective element is name3 name2 name1 name5</span>
+<span class="c1"># the index of all effective element is name3 name2 name1 name5</span>
+<span class="c1"># the length of array is 4</span>
+<span class="c1"># the length of array is 4</span>
+</pre></div>
+</div>
+<p>和普通数组一样，关联数组也支持以下运算操作</p>
+<ul>
+<li><p class="first">返回数组长度(即有效元素的个数，不包括空元素)</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">${#Array_Name[*]}</span></code></li>
+<li><code class="docutils literal"><span class="pre">${#Array_Name[&#64;]}</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素消除，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]#*word}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]##*word}</span></code>：自左而右查找<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中所有被匹配到的<code class="docutils literal"><span class="pre">word</span></code>匹配到的元素，并将所有匹配到的元素删除(并不会删除原数组中的元素)，最后返回剩余的数组元素</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]%word*}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]%%word*}</span></code>：自右而左查找<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中所有被匹配到的<code class="docutils literal"><span class="pre">word</span></code>匹配到的元素，并将所有匹配到的元素删除(并不会删除原数组中的元素)，最后返回剩余的数组元素</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素提取，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]:offset}</span></code>：返回<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中索引为<code class="docutils literal"><span class="pre">offset</span></code>的数组元素以及后面所有元素；其中<code class="docutils literal"><span class="pre">offset</span></code>为整型数</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]:offset:length}</span></code>：返回<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中索引为<code class="docutils literal"><span class="pre">offset</span></code>的数值元素以及后面<code class="docutils literal"><span class="pre">length-1</span></code>个元素；其中<code class="docutils literal"><span class="pre">offset</span></code>和<code class="docutils literal"><span class="pre">length</span></code>都为整型数</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">数组元素替换，该操作不会修改原数组元素，操作执行结果用数组来接收</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]/Pattern/Replaceplacement}</span></code>：功能同下</li>
+<li><code class="docutils literal"><span class="pre">declare</span> <span class="pre">-A</span> <span class="pre">Array_Name1=${Array_Name[*]//Pattern/Replaceplacement}</span></code>：以<code class="docutils literal"><span class="pre">Pattern</span></code>为模式匹配<code class="docutils literal"><span class="pre">Array_Name</span></code>数组中的元素，将全部匹配到的替换为<code class="docutils literal"><span class="pre">Replaceplacement</span></code>(不会修改原数组中的元素)，并返回全部数组元素；<code class="docutils literal"><span class="pre">Pattern</span></code>模式可参考<a class="reference external" href="../../../../5-Wildcard/2-Regular/1-syntax/index.html">正则表达式</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>代码示例如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">declare</span> -A <span class="nv">array_test</span><span class="o">=([</span>ele1<span class="o">]=</span>/usr/bin <span class="o">[</span>ele2<span class="o">]=</span>/root/bin <span class="o">[</span>ele3<span class="o">]=</span>/usr/apache/bin <span class="o">[</span>ele4<span class="o">]=</span>/usr/mysql <span class="o">[</span>ele5<span class="o">]=</span>/usr/apache/bin<span class="o">)</span>
+
+<span class="c1"># 返回数组长度(即有效元素的个数，不包括空元素)</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array_test is </span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the length of array_test is </span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素消除，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nb">declare</span> -A <span class="nv">array_test1</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]#*/usr/apache/bin</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test1:</span><span class="si">${</span><span class="nv">array_test1</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -A <span class="nv">array_test2</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]##*/usr/apache/bin</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test2:</span><span class="si">${</span><span class="nv">array_test2</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -A <span class="nv">array_test3</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]%/usr/apache/bin*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test3:</span><span class="si">${</span><span class="nv">array_test3</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -A <span class="nv">array_test4</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]%%/usr/apache/bin*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test4:</span><span class="si">${</span><span class="nv">array_test4</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素提取，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nb">declare</span> -A <span class="nv">array_test5</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]:</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test5:</span><span class="si">${</span><span class="nv">array_test5</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -A <span class="nv">array_test6</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]:</span><span class="nv">2</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test6:</span><span class="si">${</span><span class="nv">array_test6</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 数组元素替换，该操作不会修改原数组元素，操作执行结果用数组来接收</span>
+<span class="nb">declare</span> -A <span class="nv">array_test7</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]/</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test7:</span><span class="si">${</span><span class="nv">array_test7</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -A <span class="nv">array_test8</span><span class="o">=</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]//</span><span class="se">\/</span><span class="nv">usr</span><span class="se">\/</span><span class="nv">apache</span><span class="se">\/</span><span class="nv">bin</span><span class="p">/</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test:</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;array_test8:</span><span class="si">${</span><span class="nv">array_test8</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># the length of array_test is 5</span>
+<span class="c1"># the length of array_test is 5</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test1:/usr/mysql  /usr/bin /root/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test2:/usr/mysql  /usr/bin /root/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test3:/usr/mysql  /usr/bin /root/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test4:/usr/mysql  /usr/bin /root/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test5:/usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test6:/usr/apache/bin /usr/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test7:/usr/mysql  /usr/bin /root/bin</span>
+<span class="c1"># array_test:/usr/mysql /usr/apache/bin /usr/bin /root/bin /usr/apache/bin</span>
+<span class="c1"># array_test8:/usr/mysql  /usr/bin /root/bin</span>
+</pre></div>
+</div>
+<p id="forloopgl">关联数组和普通数组一样，也可用于for循环遍历</p>
+<p>先创建<code class="docutils literal"><span class="pre">test.log</span></code>文件，内容如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1">#cat ~/test.log</span>
+portmapper
+portmapper
+portmapper
+portmapper
+portmapper
+portmapper
+status
+status
+mountd
+mountd
+mountd
+mountd
+mountd
+mountd
+nfs
+nfs
+nfs_acl
+nfs
+nfs
+nfs_acl
+nlockmgr
+nlockmgr
+nlockmgr
+nlockmgr
+nlockmgr
+nlockmgr
+</pre></div>
+</div>
+<p>代码示例如下：统计文件中重复行的次数</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">declare</span> -A array_test
+
+<span class="k">for</span> i in <span class="sb">`</span>cat ~/test.log<span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">let</span> ++array_test<span class="o">[</span><span class="nv">$i</span><span class="o">]</span>  <span class="c1"># 修改数组元素值</span>
+<span class="k">done</span>
+
+<span class="k">for</span> j in <span class="si">${</span><span class="p">!array_test[*]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">printf</span> <span class="s2">&quot;%-15s %3s\n&quot;</span> <span class="nv">$j</span> :<span class="si">${</span><span class="nv">array_test</span><span class="p">[</span><span class="nv">$j</span><span class="p">]</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># status           :2</span>
+<span class="c1"># nfs              :4</span>
+<span class="c1"># portmapper       :6</span>
+<span class="c1"># nlockmgr         :6</span>
+<span class="c1"># nfs_acl          :2</span>
+<span class="c1"># mountd           :6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="x03">
+<span id="listsl"></span><h2>0x03 列表型<a class="headerlink" href="#x03" title="永久链接至标题">¶</a></h2>
+<p>列表型变量常用来for循环遍历，但是一般是在for循环中直接使用，当然也可以通过变量进行引用</p>
+<p id="forlistll"><span id="forlistl"></span>代码示例如下</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 生成数字列表：使用{}运算符</span>
+<span class="k">for</span> i in <span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;-------------------&quot;</span>
+
+<span class="c1"># 生成数字列表：使用seq命令</span>
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">1</span> <span class="m">2</span> <span class="m">7</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;-------------------&quot;</span>
+
+<span class="c1"># 生成文件列表：直接给出列表</span>
+<span class="k">for</span> fileName in /etc/init.d/functions /etc/rc.d/rc.sysinit /etc/fstab<span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$fileName</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;-------------------&quot;</span>
+
+<span class="c1"># 生成文件列表：使用文件名通配机制生成列表</span>
+<span class="nv">dirName</span><span class="o">=</span>/etc/rc.d
+<span class="k">for</span> fileName in <span class="nv">$dirName</span>/*.d<span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$fileName</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;-------------------&quot;</span>
+
+<span class="c1"># 生成文件列表：使用``运算符引用相关命令的执行结果</span>
+<span class="k">for</span> fileName in <span class="sb">`</span>ls ~<span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$fileName</span>
+<span class="k">done</span>
+
+<span class="c1"># 执行结果如下</span>
+<span class="c1"># 1</span>
+<span class="c1"># 2</span>
+<span class="c1"># 3</span>
+<span class="c1">#4</span>
+<span class="c1"># -------------------</span>
+<span class="c1"># 1</span>
+<span class="c1"># 3</span>
+<span class="c1"># 5</span>
+<span class="c1"># 7</span>
+<span class="c1"># -------------------</span>
+<span class="c1"># /etc/init.d/functions</span>
+<span class="c1"># /etc/rc.d/rc.sysinit</span>
+<span class="c1"># /etc/fstab</span>
+<span class="c1"># -------------------</span>
+<span class="c1"># /etc/rc.d/init.d</span>
+<span class="c1"># /etc/rc.d/rc0.d</span>
+<span class="c1"># /etc/rc.d/rc1.d</span>
+<span class="c1"># /etc/rc.d/rc2.d</span>
+<span class="c1"># /etc/rc.d/rc3.d</span>
+<span class="c1"># /etc/rc.d/rc4.d</span>
+<span class="c1"># /etc/rc.d/rc5.d</span>
+<span class="c1"># /etc/rc.d/rc6.d</span>
+<span class="c1"># -------------------</span>
+<span class="c1"># anaconda-ks.cfg</span>
+<span class="c1"># demo.sh</span>
+<span class="c1"># test1.sh</span>
+<span class="c1"># test.log</span>
+<span class="c1"># test.sh</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../3-variable/index.html" class="btn btn-neutral float-right" title="变量" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1-scriptstruct/index.html" class="btn btn-neutral" title="脚本结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>操作符 &mdash; shell脚本编程 1.0.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="shell脚本编程 1.0.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="语法基础" href="../index.html"/>
+        <link rel="next" title="控制流程语句" href="../5-control/index.html"/>
+        <link rel="prev" title="变量" href="../3-variable/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> shell脚本编程
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">语法基础</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-variable/index.html">变量</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-functions/index.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shell脚本编程</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">语法基础</a> &raquo;</li>
+        
+      <li>操作符</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/1-syntax/4-operator/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>操作符<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>shell中常用的操作符有</p>
+<ul>
+<li><p class="first"><a class="reference external" href="#referencel">引用操作符</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="#arithmetic">算术操作符</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="#conditionl">条件测试操作符</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="#integerl">整数条件测试</a></li>
+<li><a class="reference external" href="#charl">字符条件测试</a></li>
+<li><a class="reference external" href="#filel">文件条件测试</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><a class="reference external" href="#logicalll">逻辑操作符</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="#parenthesel">括号操作符</a></p>
+</li>
+</ul>
+<div class="section" id="x00">
+<span id="referencel"></span><h2>0x00 引用操作符<a class="headerlink" href="#x00" title="永久链接至标题">¶</a></h2>
+<p>引用操作符如下</p>
+<ul>
+<li><p class="first">变量引用：引用变量值，两者等效</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">$variable</span></code></li>
+<li><code class="docutils literal"><span class="pre">${variable}</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">命令引用：引用命令的执行结果</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">`command`</span></code></li>
+<li><code class="docutils literal"><span class="pre">$(command)</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">字符引用：引用字符串值</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">''</span></code>：强引用，该操作符的优先级大于<code class="docutils literal"><span class="pre">$</span></code>，即不会进行变量替换，直接引用显示全部字符</li>
+<li><code class="docutils literal"><span class="pre">&quot;&quot;</span></code>：弱引用，该操作符的优先级小于<code class="docutils literal"><span class="pre">$</span></code>，即先进行变量替换，然后再引用显示全部字符</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="x01">
+<span id="arithmetic"></span><h2>0x01 算术操作符<a class="headerlink" href="#x01" title="永久链接至标题">¶</a></h2>
+<p>组成算术表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">加</span></code>：<code class="docutils literal"><span class="pre">+</span></code>、<code class="docutils literal"><span class="pre">+=</span></code>、<code class="docutils literal"><span class="pre">++</span></code></li>
+<li><code class="docutils literal"><span class="pre">减</span></code>：<code class="docutils literal"><span class="pre">-</span></code>、<code class="docutils literal"><span class="pre">-=</span></code>、<code class="docutils literal"><span class="pre">--</span></code></li>
+<li><code class="docutils literal"><span class="pre">乘</span></code>：<code class="docutils literal"><span class="pre">*</span></code>、<code class="docutils literal"><span class="pre">*=</span></code></li>
+<li><code class="docutils literal"><span class="pre">除</span></code>：<code class="docutils literal"><span class="pre">/</span></code></li>
+<li><code class="docutils literal"><span class="pre">取余</span></code> ：<code class="docutils literal"><span class="pre">%</span></code>、<code class="docutils literal"><span class="pre">%=</span></code></li>
+</ul>
+<p>执行算术表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">$[算术表达式]</span></code></li>
+<li><code class="docutils literal"><span class="pre">$((算术表达式))</span></code></li>
+</ul>
+</div>
+<div class="section" id="x02">
+<span id="conditionl"></span><h2>0x02 条件测试操作符<a class="headerlink" href="#x02" title="永久链接至标题">¶</a></h2>
+<p>条件测试有以下几种情况</p>
+<ul class="simple">
+<li><a class="reference external" href="#integerl">整数条件测试</a></li>
+<li><a class="reference external" href="#charl">字符条件测试</a></li>
+<li><a class="reference external" href="#filel">文件条件测试</a></li>
+</ul>
+</div>
+<div class="section" id="x0200">
+<span id="integerl"></span><h2>0x0200 整数条件测试<a class="headerlink" href="#x0200" title="永久链接至标题">¶</a></h2>
+<p>组成整数条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-eq</span></code>：等于</li>
+<li><code class="docutils literal"><span class="pre">-ne</span></code>：不等于</li>
+<li><code class="docutils literal"><span class="pre">-le</span></code>：小于等于</li>
+<li><code class="docutils literal"><span class="pre">-ge</span></code>：大于等于</li>
+<li><code class="docutils literal"><span class="pre">-lt</span></code>：小于</li>
+<li><code class="docutils literal"><span class="pre">-gt</span></code>:大于</li>
+</ul>
+<p>执行整数条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">[</span> <span class="pre">整数条件测试表达式</span> <span class="pre">]</span></code>：前后有空格</li>
+<li><code class="docutils literal"><span class="pre">[[</span> <span class="pre">整数条件测试表达式</span> <span class="pre">]]</span></code>：前后有空格</li>
+</ul>
+</div>
+<div class="section" id="x0201">
+<span id="charl"></span><h2>0x0201 字符条件测试<a class="headerlink" href="#x0201" title="永久链接至标题">¶</a></h2>
+<p>组成字符条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&gt;</span></code>：大于</li>
+<li><code class="docutils literal"><span class="pre">&lt;</span></code>：小于</li>
+<li><code class="docutils literal"><span class="pre">==</span></code>：等于，等值比较</li>
+<li><code class="docutils literal"><span class="pre">=~</span></code>：左侧是字符串，右侧是一个模式，判断左侧的字符串能否被右侧的模式所匹配：但是必须在<code class="docutils literal"><span class="pre">[[]]</span></code>中执行模式匹配。模式中可以使用行首、行尾锚定符，但是模式不要加引号，有时候可能不需要转义</li>
+<li><code class="docutils literal"><span class="pre">!=</span></code>，<code class="docutils literal"><span class="pre">&lt;&gt;</span></code>：不等于</li>
+<li><code class="docutils literal"><span class="pre">-n</span></code>: 判断字符串是否不空，不空为真，空则为假</li>
+<li><code class="docutils literal"><span class="pre">-z</span></code>：判断字符串是否为空，空则为真，不空则假</li>
+</ul>
+<p>执行字符条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">[</span> <span class="pre">字符条件测试表达式</span> <span class="pre">]</span></code>：前后有空格</li>
+<li><code class="docutils literal"><span class="pre">[[</span> <span class="pre">字符条件测试表达式</span> <span class="pre">]]</span></code>：前后有空格</li>
+</ul>
+</div>
+<div class="section" id="x0202">
+<span id="filel"></span><h2>0x0202 文件条件测试<a class="headerlink" href="#x0202" title="永久链接至标题">¶</a></h2>
+<p>组成文件条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-e</span> <span class="pre">file</span></code>：测试文件是否存在</li>
+<li><code class="docutils literal"><span class="pre">-a</span> <span class="pre">file</span></code>：测试文件是否存在</li>
+<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">file</span></code>：测试是否为普通文件</li>
+<li><code class="docutils literal"><span class="pre">-d</span> <span class="pre">directory</span></code>： 测试是否为目录文件</li>
+<li><code class="docutils literal"><span class="pre">-b</span> <span class="pre">file</span></code>：测试文件是否存在并且是否为一个块设备文件</li>
+<li><code class="docutils literal"><span class="pre">-c</span> <span class="pre">file</span></code>：测试文件是否存在并且是否为一个字符设备文件</li>
+<li><code class="docutils literal"><span class="pre">-h|-L</span> <span class="pre">file</span></code>：测试文件是否存在并且是否为符号链接文件</li>
+<li><code class="docutils literal"><span class="pre">-p</span> <span class="pre">file</span></code>：测试文件是否存在并且是否为管道文件：</li>
+<li><code class="docutils literal"><span class="pre">-S</span> <span class="pre">file</span></code>：测试文件是否存在并且是否为套接字文件：</li>
+<li><code class="docutils literal"><span class="pre">-r</span> <span class="pre">file</span></code>：测试其有效用户是否对此文件有读取权限</li>
+<li><code class="docutils literal"><span class="pre">-w</span> <span class="pre">file</span></code>：测试其有效用户是否对此文件有写权限</li>
+<li><code class="docutils literal"><span class="pre">-x</span> <span class="pre">file</span></code>：测试其有效用户是否对此文件有执行权限</li>
+<li><code class="docutils literal"><span class="pre">-s</span> <span class="pre">file</span></code>：测试文件是否存在并且不空</li>
+<li><code class="docutils literal"><span class="pre">file1</span> <span class="pre">-nt</span> <span class="pre">file2</span></code>：测试file1是否比file2更new一些</li>
+<li><code class="docutils literal"><span class="pre">file1</span> <span class="pre">-ot</span> <span class="pre">file2</span></code>：测试file1是否比file2更old一些</li>
+</ul>
+<p>执行文件条件测试表达式的操作符有</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">[</span> <span class="pre">文件条件测试表达式</span> <span class="pre">]</span></code>：前后有空格</li>
+<li><code class="docutils literal"><span class="pre">[[</span> <span class="pre">文件条件测试表达式</span> <span class="pre">]]</span></code>：前后有空格</li>
+</ul>
+</div>
+<div class="section" id="x03">
+<span id="logicalll"></span><h2>0x03 逻辑操作符<a class="headerlink" href="#x03" title="永久链接至标题">¶</a></h2>
+<p>逻辑操作符有</p>
+<ul>
+<li><p class="first">逻辑与<code class="docutils literal"><span class="pre">&amp;&amp;</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">真</span> <span class="pre">&amp;&amp;</span> <span class="pre">真</span> <span class="pre">=</span> <span class="pre">真</span></code></li>
+<li><code class="docutils literal"><span class="pre">真</span> <span class="pre">&amp;&amp;</span> <span class="pre">假</span> <span class="pre">=</span> <span class="pre">假</span></code></li>
+<li><code class="docutils literal"><span class="pre">假</span> <span class="pre">&amp;&amp;</span> <span class="pre">真</span> <span class="pre">=</span> <span class="pre">假</span></code></li>
+<li><code class="docutils literal"><span class="pre">假</span> <span class="pre">&amp;&amp;</span> <span class="pre">假</span> <span class="pre">=</span> <span class="pre">假</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">逻辑或<code class="docutils literal"><span class="pre">||</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">真</span> <span class="pre">||</span> <span class="pre">真</span> <span class="pre">=</span> <span class="pre">真</span></code></li>
+<li><code class="docutils literal"><span class="pre">真</span> <span class="pre">||</span> <span class="pre">假</span> <span class="pre">=</span> <span class="pre">真</span></code></li>
+<li><code class="docutils literal"><span class="pre">假</span> <span class="pre">||</span> <span class="pre">真</span> <span class="pre">=</span> <span class="pre">真</span></code></li>
+<li><code class="docutils literal"><span class="pre">假</span> <span class="pre">||</span> <span class="pre">假</span> <span class="pre">=</span> <span class="pre">假</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">逻辑非<code class="docutils literal"><span class="pre">!</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">！真</span> <span class="pre">=</span> <span class="pre">假</span></code></li>
+<li><code class="docutils literal"><span class="pre">！假</span> <span class="pre">=</span> <span class="pre">真</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>注意：各种编译语言对逻辑真、假的定义不同，在shell中，状态值为0代表真，状态值为非0代表假</strong></p>
+</div>
+<div class="section" id="x04">
+<span id="parenthesel"></span><h2>0x04 括号操作符<a class="headerlink" href="#x04" title="永久链接至标题">¶</a></h2>
+<p>括号操作符有以下几种</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">()</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">命令组</span></code>：括号中的命令将会新开一个子shell顺序执行，所以括号中的变量不能够被脚本余下的部分使用；括号中多个命令之间用分号隔开，最后一个命令可以没有分号，各命令和括号之间不必有空格，即<code class="docutils literal"><span class="pre">(cmd1;cmd2;cmd3)</span></code></li>
+<li><code class="docutils literal"><span class="pre">命令替换</span></code>：等同于<code class="docutils literal"><span class="pre">`cmd`</span></code>，shell扫描一遍命令行，发现了<code class="docutils literal"><span class="pre">$(cmd)</span></code>结构，便将<code class="docutils literal"><span class="pre">$(cmd)</span></code>中的cmd执行一次，得到其标准输出，再将此输出放到原来命令。有些shell不支持，例如<code class="docutils literal"><span class="pre">tcsh</span></code></li>
+<li><code class="docutils literal"><span class="pre">数组初始化</span></code>：用来初始化数组</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">(())</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">执行算术表达式</span></code>：这种算术表达式是整数型的计算，不支持浮点型</li>
+<li><code class="docutils literal"><span class="pre">执行进制运算</span></code>：<code class="docutils literal"><span class="pre">$((16#5f))</span></code>结果为95(16进位转十进制)</li>
+<li><code class="docutils literal"><span class="pre">重定义变量值</span></code>：<code class="docutils literal"><span class="pre">a=5;((a++))</span></code>结果a被重定义为6</li>
+<li><code class="docutils literal"><span class="pre">算术运算比较</span></code>：双括号中的变量可以不使用$符号前缀，括号内支持多个表达式用逗号分开；比如可以直接使用<code class="docutils literal"><span class="pre">for((i=0;i&lt;5;i++))</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">[]</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">执行测试表达式</span></code>：前后有空格</li>
+<li><code class="docutils literal"><span class="pre">执行算术表达式</span></code>：前后没有空格</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">[[]]</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">执行测试表达式</span></code>：前后有空格</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">{}</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">命令组</span></code>：括号中的命令将会在当前shell顺序执行，所以括号中的变量能被脚本余下的部分使用；括号中多个命令之间用分号隔开，最后一个命令后必须有分号，并且第一条命令和左括号之间必须用空格隔开，即<code class="docutils literal"><span class="pre">{</span> <span class="pre">cmd1;cmd2;cmd3;}</span></code></li>
+<li><code class="docutils literal"><span class="pre">变量引用</span></code>：<code class="docutils literal"><span class="pre">${}</span></code></li>
+<li><code class="docutils literal"><span class="pre">生成列表</span></code>：<code class="docutils literal"><span class="pre">{a..d}.txt</span></code>表示<code class="docutils literal"><span class="pre">a.txt</span></code>、<code class="docutils literal"><span class="pre">b.txt</span></code>、<code class="docutils literal"><span class="pre">c.txt</span></code>、<code class="docutils literal"><span class="pre">d.txt</span></code>；在括号中，不允许有空白，除非这个空白被引用或转义</li>
+<li><code class="docutils literal"><span class="pre">扩展</span></code>：<code class="docutils literal"><span class="pre">{a,b}.txt</span></code>表示<code class="docutils literal"><span class="pre">a.txt</span></code>和<code class="docutils literal"><span class="pre">b.txt</span></code>；在括号中，不允许有空白，除非这个空白被引用或转义</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../5-control/index.html" class="btn btn-neutral float-right" title="控制流程语句" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../3-variable/index.html" class="btn btn-neutral" title="变量" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

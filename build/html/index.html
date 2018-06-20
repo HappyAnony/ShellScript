@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shell编程 &mdash; shell脚本编程 1.0.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="shell脚本编程 1.0.0.0 文档" href="#"/>
+        <link rel="next" title="语法基础" href="1-syntax/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> shell脚本编程
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="1-syntax/index.html">语法基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-library/index.html">常用类库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">shell脚本编程</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>shell编程</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="shell">
+<h1>shell编程<a class="headerlink" href="#shell" title="永久链接至标题">¶</a></h1>
+<p>参考文档</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cnblogs.com/f-ck-need-u/p/7048359.html">Shell脚本</a></li>
+<li><code class="docutils literal"><span class="pre">man</span> <span class="pre">bash文档</span></code></li>
+</ul>
+<p><code class="docutils literal"><span class="pre">shell</span></code>可以理解为一种脚本语言，像<code class="docutils literal"><span class="pre">javascript</span></code>等其它脚本语言一样，只需要一个能编写代码的文本编辑器和一个能解释执行的脚本解释器就可以</p>
+<p><code class="docutils literal"><span class="pre">shell脚本</span></code>的本质是：以某种语法格式将shell命令组织起来的由shell程序解析执行的脚本文本文件</p>
+<p>由本质可知，要想掌握<code class="docutils literal"><span class="pre">shell脚本</span></code>，就需要了解并掌握下列三部分内容</p>
+<ul class="simple">
+<li><strong>shell命令</strong>：即<code class="docutils literal"><span class="pre">ls/cd</span></code>等linux命令，详细可参考<a class="reference external" href="http://codetoolchains.readthedocs.io/en/latest/4-Linux/2-shellcmd/index.html">shell命令</a></li>
+<li><strong>shell解释器</strong>：即<code class="docutils literal"><span class="pre">sh/bash/csh</span></code>等shell应用程序，详细可参考<a class="reference external" href="http://codetoolchains.readthedocs.io/en/latest/4-Linux/1-shellenv/1-shellsoft/index.html">shell应用程序</a></li>
+<li><strong>shell语法</strong>：即<code class="docutils literal"><span class="pre">数据类型/变量/控制流语句/函数</span></code>等编程语法</li>
+</ul>
+<p>关于<code class="docutils literal"><span class="pre">shell命令</span></code>和<code class="docutils literal"><span class="pre">shell解释器</span></code>可参考上述指定的文档，本系列主要是对<code class="docutils literal"><span class="pre">shell语法</span></code>进行相关讲解，将从以下方面展开介绍：</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1-syntax/index.html">语法基础</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/1-scriptstruct/index.html">脚本结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/2-datatype/index.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/3-variable/index.html">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/4-operator/index.html">操作符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/5-control/index.html">控制流程语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/6-functions/index.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-syntax/7-pieceofkn/index.html">知识碎片</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2-library/index.html">常用类库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2-library/0-commonvar/index.html">常用环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-library/1-commoncmd/index.html">常用命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-library/2-commonfunc/index.html">常用函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3-sample/index.html">脚本示例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3-sample/0-smallscript.html">示例脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-sample/1-usescript.html">实用脚本</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="1-syntax/index.html" class="btn btn-neutral float-right" title="语法基础" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

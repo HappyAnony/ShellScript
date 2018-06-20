@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>常用环境变量 &mdash; shell脚本编程 1.0.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="shell脚本编程 1.0.0.0 文档" href="../../index.html"/>
+        <link rel="up" title="常用类库" href="../index.html"/>
+        <link rel="next" title="常用命令" href="../1-commoncmd/index.html"/>
+        <link rel="prev" title="常用类库" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> shell脚本编程
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../1-syntax/index.html">语法基础</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">常用类库</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">常用环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-commoncmd/index.html">常用命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-commonfunc/index.html">常用函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-sample/index.html">脚本示例</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shell脚本编程</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">常用类库</a> &raquo;</li>
+        
+      <li>常用环境变量</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/2-library/0-commonvar/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>常用环境变量<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>shell脚本中常用的环境变量有</p>
+<ul class="simple">
+<li><a class="reference external" href="#ifsl">IFS</a></li>
+<li><a class="reference external" href="#randoml">RANDOM</a></li>
+</ul>
+<div class="section" id="x00-ifs">
+<span id="ifsl"></span><h2>0x00 IFS<a class="headerlink" href="#x00-ifs" title="永久链接至标题">¶</a></h2>
+<p>shell下的很多命令都会分割单词，绝大多数时候默认是采用空格作为分隔符，有些时候遇到制表符、换行符也会进行分隔；这种分隔符是由<code class="docutils literal"><span class="pre">IFS</span></code>环境变量指定的</p>
+<p><code class="docutils literal"><span class="pre">IFS</span></code>是shell内部字段分隔符的环境变量</p>
+<div class="figure">
+<img alt="../../_images/11.png" src="../../_images/11.png" />
+</div>
+<p>由上图可知：默认的<code class="docutils literal"><span class="pre">IFS</span></code>在碰到<code class="docutils literal"><span class="pre">空格</span></code>、<code class="docutils literal"><span class="pre">制表符\t</span></code>或 <code class="docutils literal"><span class="pre">分行符\n</span></code>就会自动分隔进入下一步；但是对空格处理有点不一样，对行首和行尾两边的空格不处理，并且多个连续的空格默认当作一个空格</p>
+<p>有些时候在编写脚本或执行循环的时候，修改<code class="docutils literal"><span class="pre">IFS</span></code>可以起很大作用。如果要修改<code class="docutils literal"><span class="pre">IFS</span></code>，最好记得先备份系统<code class="docutils literal"><span class="pre">IFS</span></code>，再需要的地方再还原<code class="docutils literal"><span class="pre">IFS</span></code></p>
+<div class="figure">
+<img alt="../../_images/2.png" src="../../_images/2.png" />
+</div>
+<p>大多数时候，我们都不会去修改<code class="docutils literal"><span class="pre">IFS</span></code>来达到某种目的，而是采用其他方法来替代实现。这样就需要注意默认<code class="docutils literal"><span class="pre">IFS</span></code>的一个特殊性，它会忽略前导空白和后缀空白，并压缩连续空白；但是在某些时候，这会出现意想不到的问题</p>
+<div class="figure">
+<img alt="../../_images/3.png" src="../../_images/3.png" />
+</div>
+<p>因此，<strong>在可以对变量加引号的情况下，一定要加上引号来保护空白字符</strong></p>
+</div>
+<div class="section" id="x01-random">
+<span id="randoml"></span><h2>0x01 RANDOM<a class="headerlink" href="#x01-random" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">RANDOM</span></code>环境变量是bash的伪随机数生成器</p>
+<ul class="simple">
+<li>$RANDOM=======生成0~32767之间的随机数</li>
+<li>$[RANDOM%num]===生成0~num之间的随机数；对算术表达式的值进行引用时需要使用[]</li>
+</ul>
+<p>代码示例：通过脚本生成n个随机数(N&gt;5),对这些随机数按从小到大排序</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">declare</span> -a arrynumber
+<span class="nb">read</span> -p <span class="s2">&quot;Enter a number:&quot;</span> opt
+<span class="nv">opt</span><span class="o">=</span>$<span class="o">[</span>opt-1<span class="o">]</span>
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">0</span> <span class="nv">$opt</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+  arrynumer<span class="o">[</span><span class="nv">$i</span><span class="o">]=</span>$<span class="o">[</span>RANDOM%1000<span class="o">]</span>
+<span class="k">done</span>
+<span class="nb">let</span> <span class="nv">length</span><span class="o">=</span><span class="si">${#</span><span class="nv">arrynumer</span><span class="p">[@]</span><span class="si">}</span>
+<span class="nv">length</span><span class="o">=</span>$<span class="o">[</span>length-1<span class="o">]</span>
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">0</span> <span class="nv">$length</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+  <span class="nb">let</span> <span class="nv">j</span><span class="o">=</span>i+1
+  <span class="k">for</span> j in <span class="sb">`</span>seq <span class="nv">$j</span> <span class="nv">$length</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="o">[</span> <span class="si">${</span><span class="nv">arrynumer</span><span class="p">[</span><span class="nv">$j</span><span class="p">]</span><span class="si">}</span> -lt <span class="si">${</span><span class="nv">arrynumer</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nv">temp</span><span class="o">=</span><span class="si">${</span><span class="nv">arrynumer</span><span class="p">[</span><span class="nv">$j</span><span class="p">]</span><span class="si">}</span>
+        arrynumer<span class="o">[</span><span class="nv">$j</span><span class="o">]=</span><span class="si">${</span><span class="nv">arrynumer</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
+        arrynumer<span class="o">[</span><span class="nv">$i</span><span class="o">]=</span><span class="nv">$temp</span>
+      <span class="k">fi</span>
+  <span class="k">done</span>
+  <span class="nb">echo</span> <span class="si">${</span><span class="nv">arrynumer</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1-commoncmd/index.html" class="btn btn-neutral float-right" title="常用命令" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="常用类库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, HappyAnony.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
